@@ -1,0 +1,8 @@
+<%= form_with model:@post do |f| %>
+<%= f.text_field :title ,placeholder: "タイトル" %>
+<%= f.text_area :body ,placeholder: "本文" %>
+<%= f.file_field :image ,multipe: true ,placeholder: "画像"%>
+<%= f.file_field :video ,multipe: true ,placeholder: "動画"%>
+<%=f.text_field :embed_url,placeholder: "URL"%>
+<%= f.submit "投稿" %>
+<% end %>

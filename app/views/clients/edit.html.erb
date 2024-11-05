@@ -1,0 +1,14 @@
+<h1>マイページ編集</h1>
+<%= form_with model: @client do |c| %>
+<%= c.file_field :profile_image ,multipe: true ,placeholder: "プロフィール画像",accept:"image/*"%>
+<%= c.text_field:name %>
+<h1>Area</h1>
+<%= c.text_field:area %>
+<h1>introduction</h1>
+<%= c.text_area:introduction %>
+<h1>purpose</h1>
+<%= c.text_area:purpose %>
+<h1>goal</h1>
+<%= c.text_area:goal %>
+<%= c.submit "更新" %>
+<% end %>

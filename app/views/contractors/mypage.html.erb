@@ -1,0 +1,16 @@
+<h1>マイページ</h1>
+<% if @contractor.profile_image.attached? %>
+<%= image_tag @contractor.get_profile_image(100,100) %>
+<% end %>
+<%= @contractor.name %>
+<h1>area</h1>
+<%= @contractor.area %>
+<h1>introduction</h1>
+<%= @contractor.introduction %>
+<h1>skill</h1>
+<%= @contractor.skill %>
+<h1>experience</h1>
+<%= @contractor.experience %>
+
+<%= link_to "マイページ編集", edit_contractor_path(current_contractor.id) %>
+<%= link_to "投稿一覧", posts_path %>

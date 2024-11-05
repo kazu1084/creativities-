@@ -1,0 +1,9 @@
+<%= @post.title %>
+<%= @post.body %>
+<%= link_to @post.embed_url, @post.embed_url %>
+<%= image_tag @post.image.variant(resize_to_limit: [300, 200]) if @post.image.attached? %>
+<%= video_tag polymorphic_path(@post.video), controls: true, size: "300x300" if @post.video.attached? %>
+<%= link_to @post.client.name, client_path(@post.client_id) %>
+<%= link_to "一覧に戻る", posts_path %>
+<%= link_to "edit（仮）",edit_post_path %>
+<%= link_to "削除", post_path(@post) ,method: :delete %>
