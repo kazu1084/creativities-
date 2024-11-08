@@ -1,9 +1,26 @@
 <%= @post.title %>
 <%= @post.body %>
 <%= link_to @post.embed_url, @post.embed_url %>
-<%= image_tag @post.image.variant(resize_to_limit: [300, 200]) if @post.image.attached? %>
+<%= image_tag @post.image.variant(resize_to_limit: [300, 200]) if @post.image.attached? && @post.image.content_type.starts_with?('image') %>
 <%= video_tag polymorphic_path(@post.video), controls: true, size: "300x300" if @post.video.attached? %>
 <%= link_to @post.client.name, client_path(@post.client_id) %>
 <%= link_to "一覧に戻る", posts_path %>
 <%= link_to "edit（仮）",edit_post_path %>
 <%= link_to "削除", post_path(@post) ,method: :delete %>
+
+<p>コメント件数（ <%= @post.comments.count %> ）</p>
+<% @post.comments.each do |comment| %>
+<p><%= image_tag comment.user.get_profile_image(100,100) %></p>
+<% if comment.user_type == 'client' %>
+<p><%= link_to comment.user.name, client_path(comment.user.id) %></p>
+<% else %>
+<p><%= link_to comment.user.name, contractor_path(comment.user.id) %></p>
+<% end %>
+<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %><%= comment.content %>
+<p></p>
+<% end %>
+
+<%= form_with model: [@post, @comment] do |f| %>
+<%= f.text_area :content, rows: '2',placeholder: "コメント" %>
+<%= f.submit "送信する" %>
+<% end %>
