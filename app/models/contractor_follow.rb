@@ -1,0 +1,3 @@
+class ContractorFollow < Follow
+
+end

@@ -24,3 +24,11 @@
 <% end %>
 
 <%= link_to "投稿一覧へ戻る", posts_path %>
+
+<% if current_contractor %>
+  <% if current_contractor.following?(@client) %>
+    <%= link_to "unfollow", contractor_client_follows_path(@client), method: :delete, class: "btn btn-danger"%>
+  <% else %>
+    <%= link_to "follow", contractor_client_follows_path(@client), method: :post, class: "btn btn-primary"%>
+  <% end %>
+<% end %>

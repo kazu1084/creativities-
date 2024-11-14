@@ -1,0 +1,2 @@
+class ClientFollow < Follow
+end

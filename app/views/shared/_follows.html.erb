@@ -1,0 +1,16 @@
+<tabls class: "table">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% followings.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= link_to "詳細", user, class: "btn btn-outline-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</tabls>

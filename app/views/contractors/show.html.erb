@@ -1,2 +1,10 @@
 <h1>Contractors#show</h1>
 <p>Find me in app/views/contractors/show.html.erb</p>
+
+<% if current_client %>
+  <% if current_client.following?(@contractor) %>
+    <%= link_to "unfollow", client_contractor_follows_path(@contractor), method: :delete, class: "btn btn-danger"%>
+  <% else %>
+    <%= link_to "follow", client_contractor_follows_path(@contractor), method: :post, class: "btn btn-primary"%>
+  <% end %>
+<% end %>

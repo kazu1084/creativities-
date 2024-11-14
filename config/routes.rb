@@ -11,10 +11,28 @@ Rails.application.routes.draw do
   resources :clients,only: [:show, :edit, :update] do
     get 'mypage' => 'clients#mypage'
     get 'bookmarks' => 'bookmarks#index', as: 'bookmarks'
+    member do
+      get :follows
+    end
   end
 
   resources :contractors,only: [:show, :edit, :update] do
     get 'mypage' => 'contractors#mypage'
     get 'bookmarks' => 'bookmarks#index', as: 'bookmarks'
+    member do
+      get :follows
+    end
+  end
+  
+  namespace :client do
+    resources :contractors, only: [] do
+      resource :follows, only: [:create, :destroy]
+    end
+  end
+  
+  namespace :contractor do
+    resources :clients, only: [] do
+      resource :follows, only: [:create, :destroy]
+    end
   end
 end

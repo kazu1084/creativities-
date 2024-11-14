@@ -6,6 +6,20 @@ class Contractor < ApplicationRecord
   has_one_attached :profile_image
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :contractor_follows, dependent: :destroy
+  has_many :clients, through: :contractor_follows
+  
+  def follow(client)
+    self.contractor_follows.find_or_create_by(client: client)
+  end
+  
+  def unfollow(client)
+    self.contractor_follows.find_by(client: client)&.destroy
+  end
+  
+  def following?(client)
+    self.clients.include?(client)
+  end
 
  def get_profile_image(width,height)
     unless profile_image.attached?
