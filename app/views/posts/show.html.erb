@@ -8,6 +8,12 @@
 <%= link_to "edit（仮）",edit_post_path %>
 <%= link_to "削除", post_path(@post) ,method: :delete %>
 
+<% if @bookmark.present? %>
+  <%= link_to "ブックマークを外す", post_bookmark_path(@post.id, @bookmark.id), method: :delete,  class: "btn btn-danger" %>
+<% else %>
+  <%= link_to "ブックマーク", post_bookmarks_path(@post.id), method: :post, class: "btn btn-primary" %>
+<% end %>
+
 <p>コメント件数（ <%= @post.comments.count %> ）</p>
 <% @post.comments.each do |comment| %>
 <p><%= image_tag comment.user.get_profile_image(100,100) %></p>

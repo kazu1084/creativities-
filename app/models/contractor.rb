@@ -5,6 +5,7 @@ class Contractor < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_image
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
  def get_profile_image(width,height)
     unless profile_image.attached?

@@ -1,0 +1,9 @@
+<h1>ブックマーク一覧</h1>
+<% @user_bookmarks.each do |bookmark| %>
+<%= link_to image_tag(bookmark.user.get_profile_image(300,300)), client_path(bookmark.post.client_id)  %>
+<%= link_to bookmark.post.client.name, client_path(bookmark.post.client_id)  %>
+<%= link_to bookmark.post.title, post_path(bookmark.post.id)  %>
+<%= link_to bookmark.post.body, post_path(bookmark.post.id)  %>
+<%= link_to "ブックマークを外す", post_bookmark_path(bookmark.post_id, bookmark.id), method: :delete, class: "btn btn-danger" %>
+<p></p>
+<% end %>

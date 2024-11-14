@@ -1,9 +1,4 @@
-<% if @client.profile_image.attached? %>
 <%= image_tag @client.get_profile_image(100,100) %>
-<% else %>
-<%= image_tag @client.get_profile_image(100,100) %>
-<%= image_tag 'app.assets/images/no_image', size: "200x200" %>
-<% end %>
 <%= @client.name %>
 <h1>area</h1>
 <%= @client.area %>
@@ -19,10 +14,10 @@
 <%= link_to post.title, post_path(post.id) %>
 <%= post.body %>
 <%= link_to post.embed_url, post.embed_url %>
-<%= if post.image.attached? %>
+<% if post.image.attached? %>
 <%= image_tag post.image.variant(resize_to_limit: [300,200]) %>
 <% end %>
-<%= if post.video.attached? %>
+<% if post.video.attached? %>
 <%= video_tag polymorphic_path(post.video), controls: true, size: "300x300"  %>
 <% end %>
 <br />

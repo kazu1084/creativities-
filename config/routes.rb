@@ -6,12 +6,15 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about',as: 'about'
   resources :posts,only: [:index, :show, :new, :edit, :create, :destroy, :update] do
       resources :comments,only: [:create,:destroy]
+      resources :bookmarks,only: [:create,:destroy]
   end
   resources :clients,only: [:show, :edit, :update] do
     get 'mypage' => 'clients#mypage'
+    get 'bookmarks' => 'bookmarks#index', as: 'bookmarks'
   end
 
   resources :contractors,only: [:show, :edit, :update] do
     get 'mypage' => 'contractors#mypage'
+    get 'bookmarks' => 'bookmarks#index', as: 'bookmarks'
   end
 end

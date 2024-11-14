@@ -20,6 +20,11 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    if current_client
+      @bookmark = @post.bookmarks.find_by(user: current_client)
+    else
+      @bookmark = @post.bookmarks.find_by(user: current_contractor)
+    end
   end
 
   def edit
