@@ -1,10 +1,43 @@
-<h1>Contractors#show</h1>
-<p>Find me in app/views/contractors/show.html.erb</p>
+<%= image_tag @contractor.get_profile_image(100,100) %>
+<%= @contractor.name %>
+<h1>area</h1>
+<%= @contractor.area %>
+<h1>introduction</h1>
+<%= @contractor.introduction %>
+<h1>skill</h1>
+<%= @contractor.skill %>
+<h1>experience</h1>
+<%= @contractor.experience %>
+
+<%= link_to "投稿一覧へ戻る", posts_path %>
 
 <% if current_client %>
   <% if current_client.following?(@contractor) %>
     <%= link_to "unfollow", client_contractor_follows_path(@contractor), method: :delete, class: "btn btn-danger"%>
   <% else %>
-    <%= link_to "follow", client_contractor_follows_path(@contractor), method: :post, class: "btn btn-primary"%>
+    <%= link_to "follow", contractor_client_follows_path(@contractor), method: :post, class: "btn btn-primary"%>
+  <% end %>
+<% end %>
+
+    <h3>DM</h3>
+    <ul>
+      <% current_client.message_logs(@contractor).order(:created_at).each do |message| %>
+        <li>
+          <%= message.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <%= message.body %>
+          <%= message.sender.name%>
+        </li>
+      <% end %>
+    </ul>
+
+<% unless current_contractor %>
+  <%= form_with model: Message.new, url: client_contractor_messages_path(@contractor) do |f| %>
+      <%= f.label :body %>
+      <%= f.text_area :body, rows: 4, class: "form-control" %>
+      <%= f.label :image, "画像" %><br>
+      <%= f.file_field :image, accept: "image/*" %><br>
+      <%= f.label :video, "動画" %><br>
+      <%= f.file_field :video, accept: "video/*" %><br>
+      <%= f.submit "send", class: "btn btn-primary" %>
   <% end %>
 <% end %>

@@ -14,7 +14,9 @@ class PostsController < ApplicationController
   end
 
   def index
-  @posts = Post.all
+    @posts = Post.all
+    @posts = @posts.where('title LIKE ?', "%#{params[:keyword]}%").or(
+             @posts.where('body LIKE ?', "%#{params[:keyword]}%"))
   end
 
   def show

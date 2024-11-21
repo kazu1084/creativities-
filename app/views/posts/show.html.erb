@@ -16,15 +16,14 @@
 
 <p>コメント件数（ <%= @post.comments.count %> ）</p>
 <% @post.comments.each do |comment| %>
-<p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-<% if comment.user_type == 'client' %>
-<p><%= link_to comment.user.name, client_path(comment.user.id) %></p>
-<% else %>
-<p><%= link_to comment.user.name, contractor_path(comment.user.id) %></p>
-<% end %>
-<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %><%= comment.content %>
-<%= link_to "Delete", post_comment_path(comment.post.id, comment.id), method: :delete %>
-<p></p>
+  <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
+  <% if comment.user_type == "Client" %>
+    <p><%= link_to comment.user.name, client_path(comment.user.id) %></p>
+  <% else %>
+    <p><%= link_to comment.user.name, contractor_path(comment.user.id) %></p>
+  <% end %>
+  <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %><%= comment.content %>
+  <%= link_to "Delete", post_comment_path(comment.post.id, comment.id), method: :delete %>
 <% end %>
 
 <%= form_with model: [@post, @comment] do |f| %>

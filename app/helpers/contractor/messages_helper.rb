@@ -1,0 +1,2 @@
+module Contractor::MessagesHelper
+end

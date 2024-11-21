@@ -1,28 +1,27 @@
 <%= image_tag @client.get_profile_image(100,100) %>
-<%= @client.name %>
+  <%= @client.name %>
 <h1>area</h1>
-<%= @client.area %>
+  <%= @client.area %>
 <h1>introduction</h1>
-<%= @client.introduction %>
+  <%= @client.introduction %>
 <h1>purpose</h1>
-<%= @client.purpose %>
+  <%= @client.purpose %>
 <h1>goal</h1>
-<%= @client.goal %>
+  <%= @client.goal %>
 
-<h1>my post</h1>
+<h1>post</h1>
 <% @posts.each do |post| %>
-<%= link_to post.title, post_path(post.id) %>
-<%= post.body %>
-<%= link_to post.embed_url, post.embed_url %>
-<% if post.image.attached? %>
-<%= image_tag post.image.variant(resize_to_limit: [300,200]) %>
+  <%= link_to post.title, post_path(post.id) %>
+  <%= post.body %>
+  <%= link_to post.embed_url, post.embed_url %>
+  <% if post.image.attached? %>
+    <%= image_tag post.image.variant(resize_to_limit: [300,200]) %>
+  <% end %>
+  <% if post.video.attached? %>
+    <%= video_tag polymorphic_path(post.video), controls: true, size: "300x300"  %>
+  <% end %>
+  <br />
 <% end %>
-<% if post.video.attached? %>
-<%= video_tag polymorphic_path(post.video), controls: true, size: "300x300"  %>
-<% end %>
-<br />
-<% end %>
-
 <%= link_to "投稿一覧へ戻る", posts_path %>
 
 <% if current_contractor %>
@@ -32,3 +31,27 @@
     <%= link_to "follow", contractor_client_follows_path(@client), method: :post, class: "btn btn-primary"%>
   <% end %>
 <% end %>
+
+  <h3>DM</h3>
+  <ul>
+    <% current_contractor.message_logs(@client).order(:created_at).each do |message| %>
+      <li>
+        <%= message.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        <%= message.body %>
+        <%= message.sender.name %>
+      </li>
+    <% end %>
+  </ul>
+  <% unless current_client %>
+    <%= form_with model: Message.new, url: contractor_client_messages_path(@client) do |f| %>
+      <%= f.label :body %>
+      <%= f.text_area :body, rows: 4, class: "form-control" %>
+      <%= f.label :image, "画像" %><br>
+      <%= f.file_field :image, accept: "image/*" %><br>
+      <%= f.label :video, "動画" %><br>
+      <%= f.file_field :video, accept: "video/*" %>
+      <%= f.submit "send", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+
+

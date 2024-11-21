@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :admins, controllers: {
+    sessions: 'admin/admins/sessions'
+  }
   root to: "homes#top"
   devise_for :clients
   devise_for :contractors
@@ -23,16 +26,25 @@ Rails.application.routes.draw do
       get :follows
     end
   end
-  
+
   namespace :client do
     resources :contractors, only: [] do
       resource :follows, only: [:create, :destroy]
+      resources :messages,  only: [:create, :index]
     end
   end
-  
+
   namespace :contractor do
     resources :clients, only: [] do
       resource :follows, only: [:create, :destroy]
+      resources :messages, only: [:create,:index]
     end
+  end
+
+  namespace :admin do
+    root to: "clients#index"
+    resources :clients, only: [:index, :destroy]
+    resources :contractors, only: [:index, :destroy]
+    resources :comments, only: [:index, :destroy]
   end
 end

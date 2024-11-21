@@ -5,19 +5,31 @@ class Client < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_image
   has_many :posts, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :bookmarks, dependent: :destroy
+  has_many :comments, dependent: :destroy, as: :user
+  has_many :bookmarks, dependent: :destroy, as: :user
   has_many :client_follows, dependent: :destroy
   has_many :contractors, through: :client_follows
-  
+
+  has_many :messages, as: :sender
+
+  def message_logs(contractor)
+    Message.where(sender: self,receiver: contractor).or(Message.where(sender: contractor,receiver: self))
+  end
+
+  def latest_message(contractor)
+    Message.where(sender: self, receiver: contractor)
+      .or(Message.where(sender: contractor, receiver: self))
+      .order(created_at: :desc).limit(1).first
+  end
+
   def follow(contractor)
     self.client_follows.find_or_create_by(contractor: contractor)
   end
-  
+
   def unfollow(contractor)
     self.client_follows.find_by(contractor: contractor)&.destroy
   end
-  
+
   def following?(contractor)
     self.contractors.include?(contractor)
   end

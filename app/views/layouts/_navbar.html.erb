@@ -19,9 +19,11 @@
             <%= link_to "ブックマーク一覧" ,contractor_bookmarks_path(current_contractor.id), class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "フォローした人", follows_contractor_path(current_contractor), class: "nav-link" %>
+            <%= link_to "フォロー一覧", follows_contractor_path(current_contractor), class: "nav-link" %>
           </li>
-
+          <li class="nav-item">
+            <%= link_to "メッセージ一覧", contractor_client_messages_path(current_contractor), class: "nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to "about" ,about_path, class: "nav-link" %>
           </li>
@@ -56,7 +58,10 @@
             <%= link_to "ブックマーク一覧" ,client_bookmarks_path(current_client.id), class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "フォローした人", follows_client_path(current_client), class: "nav-link" %>
+            <%= link_to "フォロ一覧", follows_client_path(current_client), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "メッセージ一覧", client_contractor_messages_path(current_client), class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "about" , about_path, class: "nav-link" %>

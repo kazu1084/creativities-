@@ -4,19 +4,25 @@ class Contractor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_image
-  has_many :comments, dependent: :destroy
-  has_many :bookmarks, dependent: :destroy
+  has_many :comments, dependent: :destroy, as: :user
+  has_many :bookmarks, dependent: :destroy, as: :user
   has_many :contractor_follows, dependent: :destroy
   has_many :clients, through: :contractor_follows
-  
+
+  has_many :messages, as: :sender
+
+  def message_logs(client)
+    Message.where(sender: self,receiver: client).or(Message.where(sender: client,receiver: self))
+  end
+
   def follow(client)
     self.contractor_follows.find_or_create_by(client: client)
   end
-  
+
   def unfollow(client)
     self.contractor_follows.find_by(client: client)&.destroy
   end
-  
+
   def following?(client)
     self.clients.include?(client)
   end

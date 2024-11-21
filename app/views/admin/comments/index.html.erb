@@ -1,0 +1,7 @@
+<h1>Comment一覧</h1>
+<% @comments.each do |comment| %>
+  <%= comment.user.name %>
+  <%= comment.content %>
+  <%= link_to "delete", admin_comment_path(comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+  <br />
+<% end %>

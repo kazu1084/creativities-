@@ -1,0 +1,13 @@
+<h1>メッセージ一覧</h1>
+<ul>
+  <% @latest_messages.each do |message| %>
+    <li>
+        <% if message.sender == current_client %>
+          <%= link_to message.receiver.name, contractor_path(message.receiver_id)  %>
+        <% else %>
+          <%= link_to message.sender.name, contractor_path(message.receiver.id)  %>
+        <% end %>
+        <%= message.body %>
+    </li>
+  <% end %>
+</ul>

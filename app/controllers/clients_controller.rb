@@ -10,12 +10,10 @@ class ClientsController < ApplicationController
   end
 
   def edit
-    is_matching_login_client
     @client = Client.find(params[:id])
   end
 
   def update
-    is_matching_login_client
     @client = Client.find(params[:id])
     if @client.id == current_client.id
        @client.update(client_params)
@@ -27,7 +25,7 @@ class ClientsController < ApplicationController
     is_matching_login_client
     @client = Client.find(params[:id])
   end
-  
+
   def follows
     @client = Client.find(params[:id])
     @contractors = @client.contractors
