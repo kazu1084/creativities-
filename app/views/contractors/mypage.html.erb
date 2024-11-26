@@ -7,60 +7,44 @@
       <h3><%= @contractor.name %></h3>
     </div>
 
-     <div class = "my-content mt-3">
-       <div class = "card">
-         <div class = "card-body">
-            <div class ="card-title d-flex align-items-center">
-              <i class="fa-regular fa-map mx-2"></i>
-              <h2>area</h2>
-            </div>
-            <p class = "card-text mx-2">
-            <%= @contractor.area %>
-            </p>
-          </div>
+      <div class="content-body shadow p-3 mb-5 bg-white rounded">
+        <div class ="card-title d-flex align-items-center">
+          <i class="fa-regular fa-map mx-2"></i>
+          <h2>area</h2>
         </div>
+        <p class = "card-text mx-2">
+        <%= @contractor.area %>
+        </p>
      </div>
 
-     <div class = "my-content mt-3">
-       <div class = "card">
-         <div class = "card-body">
-           <div class = "card-title d-flex align-items-center">
-             <i class="fa-regular fa-square-check mx-2"></i>
-             <h2>introduction</h2>
-           </div>
-           <p class = "card-text mx-2">
-              <%= @contractor.introduction %>
-           </p>
-        </div>
+     <div class="content-body shadow p-3 mb-5 bg-white rounded">
+       <div class = "card-title d-flex align-items-center">
+         <i class="fa-regular fa-square-check mx-2"></i>
+         <h2>introduction</h2>
+       </div>
+       <p class = "card-text mx-2">
+          <%= @contractor.introduction %>
+       </p>
+     </div>
+
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class = "card-title d-flex align-items-center">
+        <i class="fa-solid fa-computer mx-2"></i>
+        <h2>skill</h2>
       </div>
+      <p class = "card-text mx-2">
+        <%= @contractor.skill %>
+      </p>
     </div>
 
-    <div class = "my-content mt-3">
-      <div class = "card">
-        <div class = "card-body">
-          <div class = "card-title d-flex align-items-center">
-            <i class="fa-solid fa-computer mx-2"></i>
-            <h2>skill</h2>
-          </div>
-          <p class = "card-text mx-2">
-            <%= @contractor.skill %>
-          </p>
-        </div>
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class = "card-title d-flex align-items-center">
+        <i class="fa-solid fa-arrows-spin mx-2"></i>
+        <h2>experience</h2>
       </div>
-    </div>
-
-    <div class = "my-content mt-3">
-      <div class = "card">
-        <div class = "card-body">
-          <div class = "card-title d-flex align-items-center">
-            <i class="fa-solid fa-arrows-spin mx-2"></i>
-            <h2>experience</h2>
-          </div>
-          <p class = "card-text mx-2">
-            <%= @contractor.experience %>
-          </p>
-        </div>
-      </div>
+      <p class = "card-text mx-2">
+        <%= @contractor.experience %>
+      </p>
     </div>
 
     <div class = "link m-3 d-flex">
