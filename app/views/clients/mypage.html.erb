@@ -7,84 +7,64 @@
       <h3><%= @client.name %></h3>
     </div>
 
-    <div class = "my-content mt-3">
-      <div class = "card">
-        <div class = "card-body">
-          <div class ="card-title d-flex align-items-center">
-            <i class="fa-regular fa-map mx-2"></i>
-            <h2>area</h2>
-          </div>
-          <p class = "card-text mx-2">
-            <%= @client.area %>
-          </p>
-        </div>
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class ="content-title d-flex align-items-center">
+        <i class="fa-regular fa-map mx-2"></i>
+        <h2>area</h2>
+      </div>
+      <p class = "card-text mx-2">
+        <%= @client.area %>
+      </p>
+    </div>
+
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class ="content-title d-flex align-items-center">
+        <i class="fa-regular fa-square-check mx-2"></i>
+        <h2>introduction</h2>
+      </div>
+      <p class = "card-text mx-2">
+        <%= @client.introduction %>
+      </p>
+    </div>
+
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class ="content-title d-flex align-items-center">
+        <i class="fa-regular fa-lightbulb mx-2"></i>
+        <h2>purpose</h2>
+      </div>
+      <p class = "card-text mx-2">
+      　<%= @client.purpose %>
+      </p>
+    </div>
+
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class ="content-title d-flex align-items-center">
+        <i class="fa-regular fa-flag mx-2"></i>
+        <h2>goal</h2>
+      </div>
+      <p class = "card-text mx-2">
+        <%= @client.goal %>
+      </p>
+    </div>
+
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class ="content-title d-flex align-items-center">
+        <i class="fa-regular fa-note-sticky mx-2"></i>
+        <h2>my post</h2>
+      </div>
+      <div class ="card-post">
+        <% @posts.each do |post| %>
+          <%= link_to post.title, post_path(post.id) %>
+          <%= post.body %>
+          <%= link_to post.embed_url, post.embed_url %>
+          <%= image_tag post.image.variant(resize_to_limit: [300,200]) if post.image.attached? %>
+          <%= video_tag polymorphic_path(post.video), controls: true, size: "300x300" if post.video.attached? %>
+          <br />
+        <% end %>
       </div>
     </div>
 
-    <div class = "my-content mt-3">
-      <div class = "card">
-        <div class = "card-body">
-          <div class ="card-title d-flex align-items-center">
-            <i class="fa-regular fa-square-check mx-2"></i>
-            <h2>introduction</h2>
-          </div>
-          <p class = "card-text mx-2">
-            <%= @client.introduction %>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class = "my-content mt-3">
-      <div class = "card">
-        <div class = "card-body">
-          <div class ="card-title d-flex align-items-center">
-            <i class="fa-regular fa-lightbulb mx-2"></i>
-            <h2>purpose</h2>
-          </div>
-          <p class = "card-text mx-2">
-          　<%= @client.purpose %>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class = "my-content mt-3">
-      <div class = "card">
-        <div class = "card-body">
-          <div class ="card-title d-flex align-items-center">
-            <i class="fa-regular fa-flag mx-2"></i>
-            <h2>goal</h2>
-          </div>
-          <p class = "card-text mx-2">
-            <%= @client.goal %>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class = "my-content mt-3">
-      <div class = "card">
-        <div class = "card-body">
-          <div class ="card-title d-flex align-items-center">
-            <i class="fa-regular fa-note-sticky mx-2"></i>
-            <h2>my post</h2>
-          </div>
-          <div class ="card-post">
-            <% @posts.each do |post| %>
-              <%= link_to post.title, post_path(post.id) %>
-              <%= post.body %>
-              <%= link_to post.embed_url, post.embed_url %>
-              <%= image_tag post.image.variant(resize_to_limit: [300,200]) if post.image.attached? %>
-              <%= video_tag polymorphic_path(post.video), controls: true, size: "300x300" if post.video.attached? %>
-              <br />
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class = "link m-3 d-flex">
+    <div class = "link m-3 d-flex align-items-center">
       <div class = "link-button">
         <%= link_to "マイページ編集", edit_client_path(current_client.id), class: "btn btn-primary" %>
       </div>

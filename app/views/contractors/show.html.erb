@@ -1,8 +1,24 @@
-<%= image_tag @contractor.get_profile_image(100,100) %>
-<%= @contractor.name %>
-<%= link_to "レビュー一覧",contractor_contractor_reviews_path(@contractor) %>
-<h1>area</h1>
-<%= @contractor.area %>
+<div class = "row">
+  <div class = "col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+    <div class = "my-content mt-3">
+      <%= image_tag @contractor.get_profile_image(300,300) %>
+      <h3><%= @contractor.name %></h3>
+      <%= link_to "レビュー一覧",contractor_contractor_reviews_path(@contractor) %>
+    </div>
+    <div class = "my-content mt-3">
+      <div class = "card">
+         <div class = "card-body">
+            <div class ="card-title d-flex align-items-center">
+              <i class="fa-regular fa-map mx-2"></i>
+                <h1>area</h1>
+            </div>
+            <p class = "card-text mx-2">
+              <%= @contractor.area %>
+            </p>
+          </div>
+      </div>
+    </div>
+
 <h1>introduction</h1>
 <%= @contractor.introduction %>
 <h1>skill</h1>
