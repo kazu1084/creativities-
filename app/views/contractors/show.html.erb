@@ -1,5 +1,6 @@
 <%= image_tag @contractor.get_profile_image(100,100) %>
 <%= @contractor.name %>
+<%= link_to "レビュー一覧",contractor_contractor_reviews_path(@contractor) %>
 <h1>area</h1>
 <%= @contractor.area %>
 <h1>introduction</h1>
@@ -18,26 +19,7 @@
     <%= link_to "follow", contractor_client_follows_path(@contractor), method: :post, class: "btn btn-primary"%>
   <% end %>
 <% end %>
-
-    <h3>DM</h3>
-    <ul>
-      <% current_client.message_logs(@contractor).order(:created_at).each do |message| %>
-        <li>
-          <%= message.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-          <%= message.body %>
-          <%= message.sender.name%>
-        </li>
-      <% end %>
-    </ul>
-
-<% unless current_contractor %>
-  <%= form_with model: Message.new, url: client_contractor_messages_path(@contractor) do |f| %>
-      <%= f.label :body %>
-      <%= f.text_area :body, rows: 4, class: "form-control" %>
-      <%= f.label :image, "画像" %><br>
-      <%= f.file_field :image, accept: "image/*" %><br>
-      <%= f.label :video, "動画" %><br>
-      <%= f.file_field :video, accept: "video/*" %><br>
-      <%= f.submit "send", class: "btn btn-primary" %>
-  <% end %>
+<br />
+<% if current_client %>
+  <%= link_to "評価する", new_client_contractor_reviews_path(@contractor.id) %>
 <% end %>

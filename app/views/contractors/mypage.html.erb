@@ -1,17 +1,75 @@
-<h1>マイページ</h1>
-<% if @contractor.profile_image.attached? %>
-<%= image_tag @contractor.get_profile_image(100,100) %>
-<% end %>
-<%= @contractor.name %>
-<h1>area</h1>
-<%= @contractor.area %>
-<h1>introduction</h1>
-<%= @contractor.introduction %>
-<h1>skill</h1>
-<%= @contractor.skill %>
-<h1>experience</h1>
-<%= @contractor.experience %>
+<div class = "row">
+  <div class = "col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+    <div class = "my-content mt-3">
+      <% if @contractor.profile_image.attached? %>
+        <%= image_tag @contractor.get_profile_image(300,300) %>
+      <% end %>
+      <h3><%= @contractor.name %></h3>
+     </div>
 
-<%= link_to "マイページ編集", edit_contractor_path(current_contractor.id) %>
-<%= link_to "投稿一覧", posts_path %>
-<%= link_to "ブックマーク一覧" ,contractor_bookmarks_path(current_contractor.id) %>
+     <div class = "my-content mt-3">
+       <div class = "card">
+         <div class = "card-body">
+            <div class ="card-title d-flex align-items-center">
+              <i class="fa-regular fa-map mx-2"></i>
+              <h2>area</h2>
+            </div>
+            <p class = "card-text mx-2">
+            <%= @contractor.area %>
+            </p>
+          </div>
+        </div>
+     </div>
+
+     <div class = "my-content mt-3">
+       <div class = "card">
+         <div class = "card-body">
+           <div class = "card-title d-flex align-items-center">
+             <i class="fa-regular fa-square-check mx-2"></i>
+             <h2>introduction</h2>
+           </div>
+           <p class = "card-text mx-2">
+              <%= @contractor.introduction %>
+           </p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "my-content mt-3">
+      <div class = "card">
+        <div class = "card-body">
+          <div class = "card-title d-flex align-items-center">
+            <i class="fa-solid fa-computer mx-2"></i>
+            <h2>skill</h2>
+          </div>
+          <p class = "card-text mx-2">
+            <%= @contractor.skill %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "my-content mt-3">
+      <div class = "card">
+        <div class = "card-body">
+          <div class = "card-title d-flex align-items-center">
+            <i class="fa-solid fa-arrows-spin mx-2"></i>
+            <h2>experience</h2>
+          </div>
+          <p class = "card-text mx-2">
+            <%= @contractor.experience %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "link m-3 d-flex">
+      <div class = "link-button">
+        <%= link_to "マイページ編集", edit_contractor_path(current_contractor.id), class: "btn btn-primary" %>
+      </div>
+      <div class = "link-button mx-2">
+        <%= link_to "投稿一覧", posts_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,26 +32,7 @@
   <% end %>
 <% end %>
 
-  <h3>DM</h3>
-  <ul>
-    <% current_contractor.message_logs(@client).order(:created_at).each do |message| %>
-      <li>
-        <%= message.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-        <%= message.body %>
-        <%= message.sender.name %>
-      </li>
-    <% end %>
-  </ul>
-  <% unless current_client %>
-    <%= form_with model: Message.new, url: contractor_client_messages_path(@client) do |f| %>
-      <%= f.label :body %>
-      <%= f.text_area :body, rows: 4, class: "form-control" %>
-      <%= f.label :image, "画像" %><br>
-      <%= f.file_field :image, accept: "image/*" %><br>
-      <%= f.label :video, "動画" %><br>
-      <%= f.file_field :video, accept: "video/*" %>
-      <%= f.submit "send", class: "btn btn-primary" %>
-  <% end %>
+<% if current_contractor %>
+<%= link_to"DMを送る",new_contractor_client_message_path(@client) %>
 <% end %>
-
 

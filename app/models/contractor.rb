@@ -8,11 +8,17 @@ class Contractor < ApplicationRecord
   has_many :bookmarks, dependent: :destroy, as: :user
   has_many :contractor_follows, dependent: :destroy
   has_many :clients, through: :contractor_follows
-
   has_many :messages, as: :sender
+  has_many :reviews, dependent: :destroy
 
   def message_logs(client)
     Message.where(sender: self,receiver: client).or(Message.where(sender: client,receiver: self))
+  end
+
+  def latest_message(client)
+    Message.where(sender: self, receiver: client)
+      .or(Message.where(sender: client, receiver: self))
+      .order(created_at: :desc).limit(1).first
   end
 
   def follow(client)

@@ -44,7 +44,7 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
-
+  
 private
 def post_params
   params.require(:post).permit(:title, :body, :image, :video, :embed_url)

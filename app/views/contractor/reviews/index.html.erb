@@ -1,0 +1,22 @@
+<% @reviews.each do |review| %>
+<div id="star_<%= review.id %>"></div>
+<script>
+        $(document).on('turbolinks:load', function() {
+        let elem = document.querySelector('#star_<%= review.id %>');
+        if(elem == null) return;
+
+        elem.innerHTML = ""
+        let opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          score: "<%= review.score %>",
+          readOnly: true,
+        };
+        raty(elem, opt);
+      });
+</script>
+<%= image_tag review.client.get_profile_image(100,100) %>
+<%= review.client.name %> <br />
+<%= review.body %><br />
+<% end %>

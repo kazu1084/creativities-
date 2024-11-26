@@ -1,1 +1,10 @@
 @use '~bootstrap/scss/bootstrap';
+
+.content-body {
+  display: flex;
+  align-items: center;
+}
+
+.content-body i {
+  margin-right: 8px;
+}

@@ -28,16 +28,21 @@ Rails.application.routes.draw do
   end
 
   namespace :client do
+      resources :messages,  only: [:create, :index, :show]
     resources :contractors, only: [] do
       resource :follows, only: [:create, :destroy]
-      resources :messages,  only: [:create, :index]
+      resource :reviews, only: [:new, :create, :destroy]
     end
   end
 
   namespace :contractor do
+    resources :messages, only: [:create,:index, :show]
+    resources :contractors, only: [] do
+      resources :reviews, only: [:index]
+    end
     resources :clients, only: [] do
       resource :follows, only: [:create, :destroy]
-      resources :messages, only: [:create,:index]
+      resources :messages, only: [:new]
     end
   end
 

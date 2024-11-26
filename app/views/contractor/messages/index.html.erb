@@ -1,13 +1,13 @@
 <h1>メッセージ一覧</h1>
 <ul>
-  <% @messages.each do |message| %>
+  <% @latest_messages.each do |message| %>
     <li>
         <% if message.sender == current_contractor %>
-          <%= link_to message.receiver.name, client_path(message.receiver_id)  %>
+          <%= link_to message.receiver.name, contractor_message_path(message.receiver)  %>
         <% else %>
-          <%= link_to message.sender.name, client_path(message.receiver_id)  %>
+          <%= link_to message.sender.name, contractor_message_path(message.sender)  %>
         <% end %>
-        <%= message.body %>
+        <%= message.created_at.strftime("%m-%d %H:%M") %><%= message.body %>
     </li>
   <% end %>
 </ul>

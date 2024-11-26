@@ -9,8 +9,8 @@ class Client < ApplicationRecord
   has_many :bookmarks, dependent: :destroy, as: :user
   has_many :client_follows, dependent: :destroy
   has_many :contractors, through: :client_follows
-
   has_many :messages, as: :sender
+  has_many :reviews, dependent: :destroy
 
   def message_logs(contractor)
     Message.where(sender: self,receiver: contractor).or(Message.where(sender: contractor,receiver: self))

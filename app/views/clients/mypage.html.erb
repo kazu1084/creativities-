@@ -1,27 +1,96 @@
-<h1>マイページ</h1>
-<% if @client.profile_image.attached? %>
-<%= image_tag @client.get_profile_image(100,100) %>
-<% end %>
-<%= @client.name %>
-<h1>area</h1>
-<%= @client.area %>
-<h1>introduction</h1>
-<%= @client.introduction %>
-<h1>purpose</h1>
-<%= @client.purpose %>
-<h1>goal</h1>
-<%= @client.goal %>
+<div class = "row">
+  <div class = "col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+    <div class = "my-content mt-3">
+    <% if @client.profile_image.attached? %>
+    <%= image_tag @client.get_profile_image(300,300) %>
+    <% end %>
+      <h3><%= @client.name %></h3>
+    </div>
 
-<h1>my post</h1>
-<% @posts.each do |post| %>
-<%= link_to post.title, post_path(post.id) %>
-<%= post.body %>
-<%= link_to post.embed_url, post.embed_url %>
-<%= image_tag post.image.variant(resize_to_limit: [300,200]) if post.image.attached? %>
-<%= video_tag polymorphic_path(post.video), controls: true, size: "300x300" if post.video.attached? %>
-<br />
-<% end %>
+    <div class = "my-content mt-3">
+      <div class = "card">
+        <div class = "card-body">
+          <div class ="card-title d-flex align-items-center">
+            <i class="fa-regular fa-map mx-2"></i>
+            <h2>area</h2>
+          </div>
+          <p class = "card-text mx-2">
+            <%= @client.area %>
+          </p>
+        </div>
+      </div>
+    </div>
 
-<%= link_to "マイページ編集", edit_client_path(current_client.id) %>
-<%= link_to "投稿一覧", posts_path %>
-<%= link_to "ブックマーク一覧" ,client_bookmarks_path(current_client.id) %>
+    <div class = "my-content mt-3">
+      <div class = "card">
+        <div class = "card-body">
+          <div class ="card-title d-flex align-items-center">
+            <i class="fa-regular fa-square-check mx-2"></i>
+            <h2>introduction</h2>
+          </div>
+          <p class = "card-text mx-2">
+            <%= @client.introduction %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "my-content mt-3">
+      <div class = "card">
+        <div class = "card-body">
+          <div class ="card-title d-flex align-items-center">
+            <i class="fa-regular fa-lightbulb mx-2"></i>
+            <h2>purpose</h2>
+          </div>
+          <p class = "card-text mx-2">
+          　<%= @client.purpose %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "my-content mt-3">
+      <div class = "card">
+        <div class = "card-body">
+          <div class ="card-title d-flex align-items-center">
+            <i class="fa-regular fa-flag mx-2"></i>
+            <h2>goal</h2>
+          </div>
+          <p class = "card-text mx-2">
+            <%= @client.goal %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "my-content mt-3">
+      <div class = "card">
+        <div class = "card-body">
+          <div class ="card-title d-flex align-items-center">
+            <i class="fa-regular fa-note-sticky mx-2"></i>
+            <h2>my post</h2>
+          </div>
+          <div class ="card-post">
+            <% @posts.each do |post| %>
+              <%= link_to post.title, post_path(post.id) %>
+              <%= post.body %>
+              <%= link_to post.embed_url, post.embed_url %>
+              <%= image_tag post.image.variant(resize_to_limit: [300,200]) if post.image.attached? %>
+              <%= video_tag polymorphic_path(post.video), controls: true, size: "300x300" if post.video.attached? %>
+              <br />
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class = "link m-3 d-flex">
+      <div class = "link-button">
+        <%= link_to "マイページ編集", edit_client_path(current_client.id), class: "btn btn-primary" %>
+      </div>
+      <div class = "link-button mx-2">
+        <%= link_to "投稿一覧", posts_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

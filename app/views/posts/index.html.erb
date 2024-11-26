@@ -1,14 +1,15 @@
-<%= form_with url: posts_path, method: :get do |f| %>
-  <%= f.search_field :keyword, value: params[:keyword] %>
-  
-  <%= f.submit "search" %>
-<% end %>
+<div class = "row">
+  <%= form_with url: posts_path, method: :get do |f| %>
+    <%= f.search_field :keyword, value: params[:keyword] %>
+    <%= f.submit "search" %>
+  <% end %>
 
-<% @posts.each do |post| %>
-  <%= link_to post.title, post_path(post.id) %>
-  <%= post.body %>
-  <%= link_to post.embed_url, post.embed_url %>
-  <%= image_tag post.image.variant(resize_to_limit: [300, 200]) if post.image.attached? && post.image.content_type.starts_with?('image') %>
-  <%= video_tag polymorphic_path(post.video), controls: true, size: "300x300" if post.video.attached? %>
-  <br />
-<% end %>
+  <% @posts.each do |post| %>
+    <%= link_to post.title, post_path(post.id) %>
+    <%= post.body %>
+    <%= link_to post.embed_url, post.embed_url %>
+    <%= image_tag post.image.variant(resize_to_limit: [300, 200]) if post.image.attached? && post.image.content_type.starts_with?('image') %>
+    <%= video_tag polymorphic_path(post.video), controls: true, size: "300x300" if post.video.attached? %>
+    <br />
+  <% end %>
+</div>
