@@ -15,14 +15,16 @@
     </header>
     <main>
       <div class="container">
-        <%= render 'layouts/flash_messages' %>
+        <div class="error">
+          <%= render 'layouts/flash_messages' %>
+        </div>
         <%= yield %>
       </div>
     </main>
     <footer>
       <div class ="d-flex justify-content-center align-items-end">
         <a class="navbar-brand" href="/">
-        <%= image_tag "app-logo2.png", class: "app-logo" %>
+        <%= image_tag "app-logo2.png", class: "app-logo2" %>
         </a>
         <p class= logo-text>©2024 Creativities, Inc.</p>
       </div>
