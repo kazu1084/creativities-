@@ -1,14 +1,57 @@
-<h1>マイページ編集</h1>
-<%= form_with model: @client do |c| %>
-<%= c.file_field :profile_image ,multipe: true ,placeholder: "プロフィール画像",accept:"image/*"%>
-<%= c.text_field:name %>
-<h1>Area</h1>
-<%= c.text_field:area %>
-<h1>introduction</h1>
-<%= c.text_area:introduction %>
-<h1>purpose</h1>
-<%= c.text_area:purpose %>
-<h1>goal</h1>
-<%= c.text_area:goal %>
-<%= c.submit "更新" %>
-<% end %>
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <h2 class="card-title text-center text-white pt-2">マイページ編集</h2>
+      </div>
+      <div class="card-body">
+        <%= form_with model: @client do |c| %>
+        <div class = "form-image mb-4">
+          <label for="profile_image" class="form-label d-block mb-2">プロフィール画像</label>
+           <%= c.file_field :profile_image ,multipe: true ,placeholder: "プロフィール画像"%>
+        </div>
+
+        <div class = "content-form mb-4">
+          <label for="name" class="form-label">Name</label>
+          <div class = "edit-form">
+            <%= c.text_field:name, class: "form-control rounded", placeholder: "Name" %>
+          </div>
+        </div>
+
+        <div class = "content-form mb-4">
+          <label for="area" class="form-label">Area</label>
+          <div class = "edit-form">
+            <%= c.text_field:area, class: "form-control rounded", placeholder: "Area"  %>
+          </div>
+        </div>
+
+        <div class = "content-form mb-4">
+          <label for="introduction" class="form-label">introduction</label>
+          <div class = "edit-form">
+            <%= c.text_area:introduction, class: "form-control rounded", rows: 4, placeholder: "Introduction" %>
+          </div>
+        </div>
+
+        <div class = "content-form mb-4">
+          <label for="purpose" class="form-label">purpose</label>
+          <div class = "edit-form">
+            <%= c.text_area:purpose, class: "form-control rounded", rows: 4, placeholder: "Purpose" %>
+          </div>
+        </div>
+
+        <div class = "content-form mb-4">
+          <label for="goal" class="form-label">goal</label>
+          <div class = "edit-form">
+            <%= c.text_area:goal, class: "form-control rounded", rows: 4, placeholder: "Goal" %>
+          </div>
+        </div>
+
+        <div class = "submit-button mb-3">
+          <%= c.submit "更新", class: "btn btn-primary btn-lg mt-3" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

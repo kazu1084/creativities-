@@ -2,40 +2,63 @@
   <div class = "col-sm-8 offset-sm-2 col-md-6 offset-md-3">
     <div class = "my-content mt-3">
       <%= image_tag @contractor.get_profile_image(300,300) %>
-      <h3><%= @contractor.name %></h3>
-      <%= link_to "レビュー一覧",contractor_contractor_reviews_path(@contractor) %>
-    </div>
-    <div class = "my-content mt-3">
-      <div class = "card">
-         <div class = "card-body">
-            <div class ="card-title d-flex align-items-center">
-              <i class="fa-regular fa-map mx-2"></i>
-                <h1>area</h1>
-            </div>
-            <p class = "card-text mx-2">
-              <%= @contractor.area %>
-            </p>
-          </div>
+      <div class ="action-area d-flex my-3">
+        <h3 class = "my-3"><%= @contractor.name %></h3>
+        <% if current_client %>
+          <% if current_client.following?(@contractor) %>
+            <%= link_to "unfollow", client_contractor_follows_path(@contractor), method: :delete, class: "btn btn-danger mx-3"%>
+          <% else %>
+            <%= link_to "follow", client_contractor_follows_path(@contractor), method: :post, class: "btn btn-primary mx-3"%>
+          <% end %>
+        <% end %>
+        <%= link_to "レビュー一覧",contractor_contractor_reviews_path(@contractor), class: "btn btn-primary" %>
+        <% if current_client %>
+          <%= link_to "評価する", new_client_contractor_reviews_path(@contractor.id), class: "btn btn-warning mx-3" %>
+        <% end %>
       </div>
     </div>
 
-<h1>introduction</h1>
-<%= @contractor.introduction %>
-<h1>skill</h1>
-<%= @contractor.skill %>
-<h1>experience</h1>
-<%= @contractor.experience %>
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class ="card-title d-flex align-items-center">
+         <i class="fa-regular fa-map mx-2"></i>
+         <h1>area</h1>
+      </div>
+      <p class = "card-text mx-2">
+        <%= @contractor.area %>
+      </p>
+    </div>
 
-<%= link_to "投稿一覧へ戻る", posts_path %>
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class ="card-title d-flex align-items-center">
+        <i class="fa-regular fa-square-check mx-2"></i>
+        <h1>introduction</h1>
+      </div>
+       <p class = "card-text mx-2">
+        <%= @contractor.introduction %>
+       </p>
+    </div>
 
-<% if current_client %>
-  <% if current_client.following?(@contractor) %>
-    <%= link_to "unfollow", client_contractor_follows_path(@contractor), method: :delete, class: "btn btn-danger"%>
-  <% else %>
-    <%= link_to "follow", contractor_client_follows_path(@contractor), method: :post, class: "btn btn-primary"%>
-  <% end %>
-<% end %>
-<br />
-<% if current_client %>
-  <%= link_to "評価する", new_client_contractor_reviews_path(@contractor.id) %>
-<% end %>
+     <div class="content-body shadow p-3 mb-5 bg-white rounded">
+       <div class ="card-title d-flex align-items-center">
+         <i class="fa-solid fa-computer mx-2"></i>
+         <h1>skill</h1>
+       </div>
+       <p class = "card-text mx-2">
+         <%= @contractor.skill %>
+       </p>
+     </div>
+
+      <div class="content-body shadow p-3 mb-5 bg-white rounded">
+        <div class ="card-title d-flex align-items-center">
+          <i class="fa-solid fa-arrows-spin mx-2"></i>
+          <h1>experience</h1>
+        </div>
+        <p class = "card-text mx-2">
+          <%= @contractor.experience %>
+        </p>
+      </div>
+
+      <%= link_to "投稿一覧", posts_path, class: "btn btn-primary" %>
+      <br />
+  </div>
+</div>

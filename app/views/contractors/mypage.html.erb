@@ -4,7 +4,7 @@
       <% if @contractor.profile_image.attached? %>
         <%= image_tag @contractor.get_profile_image(300,300) %>
       <% end %>
-      <h3><%= @contractor.name %></h3>
+      <h3 class = "my-3"><%= @contractor.name %></h3>
     </div>
 
       <div class="content-body shadow p-3 mb-5 bg-white rounded">
