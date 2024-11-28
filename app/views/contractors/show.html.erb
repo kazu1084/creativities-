@@ -2,18 +2,21 @@
   <div class = "col-sm-8 offset-sm-2 col-md-6 offset-md-3">
     <div class = "my-content mt-3">
       <%= image_tag @contractor.get_profile_image(300,300) %>
-      <div class ="action-area d-flex my-3">
-        <h3 class = "my-3"><%= @contractor.name %></h3>
+      <h3 class = "my-3"><%= @contractor.name %></h3>
+        <div class ="action-area my-3">
         <% if current_client %>
           <% if current_client.following?(@contractor) %>
-            <%= link_to "unfollow", client_contractor_follows_path(@contractor), method: :delete, class: "btn btn-danger mx-3"%>
+            <%= link_to "unfollow", client_contractor_follows_path(@contractor), method: :delete, class: "btn btn-danger mx-3 p-10 mb-3"%>
           <% else %>
-            <%= link_to "follow", client_contractor_follows_path(@contractor), method: :post, class: "btn btn-primary mx-3"%>
+            <%= link_to "follow", client_contractor_follows_path(@contractor), method: :post, class: "btn btn-primary mx-3 py-10 mb-3"%>
           <% end %>
         <% end %>
-        <%= link_to "レビュー一覧",contractor_contractor_reviews_path(@contractor), class: "btn btn-primary" %>
+        <%= link_to "レビュー一覧",contractor_contractor_reviews_path(@contractor), class: "btn btn-primary mb-3" %>
         <% if current_client %>
-          <%= link_to "評価する", new_client_contractor_reviews_path(@contractor.id), class: "btn btn-warning mx-3" %>
+          <%= link_to "評価する", new_client_contractor_reviews_path(@contractor.id), class: "btn btn-warning mx-3 mb-3" %>
+        <% end %>
+        <% if current_client %>
+          <%= link_to"DMを送る",new_client_contractor_message_path(@contractor), class: "btn btn-primary mb-3" %>
         <% end %>
       </div>
     </div>

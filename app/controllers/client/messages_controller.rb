@@ -1,5 +1,10 @@
 class Client::MessagesController < ApplicationController
 
+  def new
+    @contractor = Contractor.find(params[:contractor_id])
+    @message = Message.new
+  end
+
   def index
     @contractors = Contractor.joins(:messages).where(messages:{sender: current_client}).or(Contractor.joins(:messages).where(messages:{receiver: current_client})).distinct
     @latest_messages = @contractors.map do |contractor|

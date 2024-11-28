@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :contractors, only: [] do
       resource :follows, only: [:create, :destroy]
       resource :reviews, only: [:new, :create, :destroy]
+      resources :messages, only: [:new]
     end
   end
 

@@ -1,0 +1,12 @@
+<% unless current_contractor %>
+  <%= form_with model: @message, url: client_messages_path do |f| %>
+  <%= f.hidden_field :receiver_id, value: @contractor.id %>
+      <%= f.label :body %>
+      <%= f.text_area :body, rows: 4, class: "form-control" %>
+      <%= f.label :image, "画像" %><br>
+      <%= f.file_field :image, accept: "image/*" %><br>
+      <%= f.label :video, "動画" %><br>
+      <%= f.file_field :video, accept: "video/*" %><br>
+      <%= f.submit "send", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
