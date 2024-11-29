@@ -1,22 +1,80 @@
-<% @reviews.each do |review| %>
-<div id="star_<%= review.id %>"></div>
-<script>
-        $(document).on('turbolinks:load', function() {
-        let elem = document.querySelector('#star_<%= review.id %>');
-        if(elem == null) return;
+<div class = "row">
+  <div class = "user-show col-lg-6">
+    <div class = "my-content mt-3">
+      <%= image_tag @contractor.get_profile_image(300,300) %>
+      <h3 class = "my-3"><%= @contractor.name %></h3>
+       <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class ="card-title d-flex align-items-center">
+         <i class="fa-regular fa-map mx-2"></i>
+         <h1>area</h1>
+      </div>
+      <p class = "card-text mx-2">
+        <%= @contractor.area %>
+      </p>
+    </div>
 
-        elem.innerHTML = ""
-        let opt = {
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          score: "<%= review.score %>",
-          readOnly: true,
-        };
-        raty(elem, opt);
-      });
-</script>
-<%= image_tag review.client.get_profile_image(100,100) %>
-<%= review.client.name %> <br />
-<%= review.body %><br />
-<% end %>
+    <div class="content-body shadow p-3 mb-5 bg-white rounded">
+      <div class ="card-title d-flex align-items-center">
+        <i class="fa-regular fa-square-check mx-2"></i>
+        <h1>introduction</h1>
+      </div>
+       <p class = "card-text mx-2">
+        <%= @contractor.introduction %>
+       </p>
+    </div>
+
+     <div class="content-body shadow p-3 mb-5 bg-white rounded">
+       <div class ="card-title d-flex align-items-center">
+         <i class="fa-solid fa-computer mx-2"></i>
+         <h1>skill</h1>
+       </div>
+       <p class = "card-text mx-2">
+         <%= @contractor.skill %>
+       </p>
+     </div>
+
+      <div class="content-body shadow p-3 mb-2 bg-white rounded">
+        <div class ="card-title d-flex align-items-center">
+          <i class="fa-solid fa-arrows-spin mx-2"></i>
+          <h1>experience</h1>
+        </div>
+        <p class = "card-text mx-2">
+          <%= @contractor.experience %>
+        </p>
+      </div>
+         <%= link_to "ユーザー画面に戻る", contractor_path(@contractor) %>
+     </div>
+  </div>
+  <div class = "review-form col-lg-6 mt-5">
+    <% @reviews.each do |review| %>
+    <div class = "client-review mb-5">
+      <div class = "client-profile mb-2">
+        <%= link_to client_path(review.client) do %>
+          <%= image_tag review.client.icon_image %>
+          <%= review.client.name %>
+        <% end %>
+      </div>
+      <div id="star_<%= review.id %>"></div>
+      <script>
+          $(document).on('turbolinks:load', function() {
+          let elem = document.querySelector('#star_<%= review.id %>');
+          if(elem == null) return;
+
+          elem.innerHTML = ""
+          let opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            score: "<%= review.score %>",
+            readOnly: true,
+          };
+          raty(elem, opt);
+        });
+      </script>
+      <div class = "review-body mt-2">
+        <%= review.body %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

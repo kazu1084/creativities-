@@ -1,32 +1,80 @@
-<%= @post.title %>
-<%= @post.body %>
-<%= link_to @post.embed_url, @post.embed_url %>
-<%= image_tag @post.image.variant(resize_to_limit: [300, 200]) if @post.image.attached? && @post.image.content_type.starts_with?('image') %>
-<%= video_tag polymorphic_path(@post.video), controls: true, size: "300x300" if @post.video.attached? %>
-<%= link_to @post.client.name, client_path(@post.client_id) %>
-<%= link_to "一覧に戻る", posts_path %>
-<%= link_to "edit（仮）",edit_post_path %>
-<%= link_to "削除", post_path(@post) ,method: :delete %>
+<div class = "row justify-content-center">
+  <div class = "comment-sidebar col-lg-3">
+    <div class = "comment-index mt-5">
+      <p>コメント件数（ <%= @post.comments.count %> ）</p>
+    </div>
+    <% @post.comments.each do |comment| %>
+    <div class = "comment-show mb-4">
+      <div class = "comment-user">
+        <%= image_tag comment.user.icon_image, class: "rounded-circle" %>
+        <% if comment.user_type == "Client" %>
+          <div class = "comment-user-name"><%= link_to comment.user.name, client_path(comment.user.id) %></div>
+        <% else %>
+          <div class = "comment-user-name"><%= link_to comment.user.name, contractor_path(comment.user.id) %></div>
+        <% end %>
+      </div>
+        <div class = "comment-time">
+          <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        </div>
+          <%= comment.content %>
+          <%= link_to post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+            <i class="fa-regular fa-trash-can"></i>
+          <% end %>
+    </div>
+    <% end %>
+    <div class = "comment-form-area mt-3">
+      <%= form_with model: [@post, @comment] do |f| %>
+        <div class = "comment-form">
+          <%= f.text_area :content, rows: '3',placeholder: "コメント", class: "form-control rounded" %>
+        </div>
+        <div class = "comment-submit">
+          <%= f.submit "送信する", class: "btn btn-primary mt-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<% if @bookmark.present? %>
-  <%= link_to "ブックマークを外す", post_bookmark_path(@post.id, @bookmark.id), method: :delete,  class: "btn btn-danger" %>
-<% else %>
-  <%= link_to "ブックマーク", post_bookmarks_path(@post.id), method: :post, class: "btn btn-primary" %>
-<% end %>
-
-<p>コメント件数（ <%= @post.comments.count %> ）</p>
-<% @post.comments.each do |comment| %>
-  <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-  <% if comment.user_type == "Client" %>
-    <p><%= link_to comment.user.name, client_path(comment.user.id) %></p>
-  <% else %>
-    <p><%= link_to comment.user.name, contractor_path(comment.user.id) %></p>
-  <% end %>
-  <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %><%= comment.content %>
-  <%= link_to "Delete", post_comment_path(comment.post.id, comment.id), method: :delete %>
-<% end %>
-
-<%= form_with model: [@post, @comment] do |f| %>
-<%= f.text_area :content, rows: '2',placeholder: "コメント" %>
-<%= f.submit "送信する" %>
-<% end %>
+  <div class = "post-show col-sm-10 col-lg-7">
+    <div class = "post mt-5">
+      <div class = "post-profile mb-3">
+      <%= link_to client_path(@post.client) do %>
+        <%= image_tag @post.client.icon_image, class: "rounded-circle" %>
+        <%= @post.client.name %>
+      <% end %>
+      </div>
+      <div class = "post-title mb-3">
+        <%= link_to @post.title.truncate(30), post_path(@post.id) %>
+      </div>
+      <div class = "post-body mb-3">
+        <%= @post.body %>
+      </div>
+      <div class = "post-url mb-3">
+        <%= link_to @post.embed_url, @post.embed_url %>
+      </div>
+      <%= image_tag @post.resized_image, class: "mb-3" if @post.image.attached? && @post.image.content_type.starts_with?('image') %>
+      <%= video_tag polymorphic_path(@post.video), controls: true, size: "635x300", class: "mb-3" if @post.video.attached? %>
+    </div>
+    <div class = "icon-group d-flex">
+      <%= link_to edit_post_path, class: "mr-3" do %>
+        <i class="fa-regular fa-pen-to-square" style="font-size: 35px;"></i>
+      <% end %>
+      <%= link_to post_path(@post) ,method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+        <i class="fa-regular fa-trash-can large" style="font-size: 35px;"></i>
+      <% end %>
+      <div class = "ml-auto">
+        <% if @bookmark.present? %>
+          <%= link_to post_bookmark_path(@post.id, @bookmark.id), method: :delete do %>
+            <i class="fa-solid fa-bookmark mr-3 text-right" style="font-size: 35px;"></i>
+          <% end %>
+        <% else %>
+          <%= link_to post_bookmarks_path(@post.id), method: :post do %>
+            <i class="fa-regular fa-bookmark mr-3 text-right" style="font-size: 35px;"></i>
+          <% end %>
+        <% end %>
+        <div class = "posts-link mt-4 ml-auto">
+          <%= link_to "投稿一覧に戻る", posts_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

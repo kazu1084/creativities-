@@ -1,13 +1,52 @@
-<%= form_with model:@post do |f| %>
-<label for = "input-title">タイトル</label>
-<%= f.text_field :title, autofocus:true %>
-<label for = "input-body">本文</label>
-<%= f.text_area :body %>
-<label for = "input-image">画像</label>
-<%= f.file_field :image , accept: "image/*" ,multipe: true %>
-<label for = "input-video">動画</label>
-<%= f.file_field :video, accept: "video/*" ,multipe: true %>
-<label for = "input-url">URL</label>
-<%=f.text_field :embed_url %>
-<%= f.submit "更新" %>
-<% end %>
+<div class = "row justify-content-center">
+  <div class = "post-form mt-5">
+    <%= form_with model:@post do |f| %>
+      <div class = "edit-title">
+        <div class = "edit-label">
+          <label for = "input-title">タイトル</label>
+        </div>
+        <div class = "edit-field">
+          <%= f.text_field :title, autofocus:true, class: "form-control border-radius mb-3" %>
+        </div>
+      </div>
+
+      <div class = "edit-body">
+        <div class = "edit-label">
+          <label for = "input-body">本文</label>
+        </div>
+        <div class = "edit-field">
+          <%= f.text_area :body, class: "form-control border-radius mb-3",rows:6 %>
+        </div>
+      </div>
+
+      <div class = "edit-image">
+        <div class = "edit-label">
+          <label for = "input-image">画像</label>
+        </div>
+        <div class = "edit-field">
+          <%= f.file_field :image , accept: "image/*" ,multipe: true %>
+        </div>
+      </div>
+
+      <div class = "edit-video">
+        <div class = "edit-label">
+          <label for = "input-video">動画</label>
+        </div>
+        <div class = "edit-field">
+          <%= f.file_field :video, accept: "video/*" ,multipe: true %>
+        </div>
+      </div>
+
+      <div class = "edit-url">
+        <div class = "edit-label">
+          <label for = "input-url">URL</label>
+        </div>
+        <div class = "edit-field">
+          <%=f.text_field :embed_url, class: "form-control border-radius mb-3" %>
+        </div>
+      </div>
+      <div class = "edit-submit">
+        <%= f.submit "更新" %>
+      </div>
+    <% end %>
+  </div>

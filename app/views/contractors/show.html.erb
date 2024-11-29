@@ -6,9 +6,9 @@
         <div class ="action-area my-3">
         <% if current_client %>
           <% if current_client.following?(@contractor) %>
-            <%= link_to "unfollow", client_contractor_follows_path(@contractor), method: :delete, class: "btn btn-danger mx-3 p-10 mb-3"%>
+            <%= link_to "unfollow", client_contractor_follows_path(@contractor), method: :delete, class: "btn btn-danger mr-3 p-10 mb-3"%>
           <% else %>
-            <%= link_to "follow", client_contractor_follows_path(@contractor), method: :post, class: "btn btn-primary mx-3 py-10 mb-3"%>
+            <%= link_to "follow", client_contractor_follows_path(@contractor), method: :post, class: "btn btn-primary mr-3 py-10 mb-3"%>
           <% end %>
         <% end %>
         <%= link_to "レビュー一覧",contractor_contractor_reviews_path(@contractor), class: "btn btn-primary mb-3" %>

@@ -6,9 +6,9 @@
         <h3 class = "my-3"><%= @client.name %></h3>
         <% if current_contractor %>
           <% if current_contractor.following?(@client) %>
-            <%= link_to "unfollow", contractor_client_follows_path(@client), method: :delete, class: "btn btn-danger mx-3"%>
+            <%= link_to "unfollow", contractor_client_follows_path(@client), method: :delete, class: "btn btn-danger mr-3"%>
           <% else %>
-            <%= link_to "follow", contractor_client_follows_path(@client), method: :post, class: "btn btn-primary mx-3"%>
+            <%= link_to "follow", contractor_client_follows_path(@client), method: :post, class: "btn btn-primary mr-3"%>
           <% end %>
         <% end %>
         <% if current_contractor %>
