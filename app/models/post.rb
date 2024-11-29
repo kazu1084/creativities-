@@ -8,4 +8,9 @@ class Post < ApplicationRecord
   def bookmarked_by?(user,user_type)
     bookmarks.where(user_id: user,user_type: user_type).exists?
   end
+
+  def resized_image
+    image.variant(resize_to_fill: [635, 300, { gravity: "Center" }]).processed
+  end
+
 end

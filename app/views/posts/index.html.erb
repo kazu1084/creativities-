@@ -1,15 +1,39 @@
-<div class = "row">
-  <%= form_with url: posts_path, method: :get do |f| %>
-    <%= f.search_field :keyword, value: params[:keyword] %>
-    <%= f.submit "search" %>
-  <% end %>
+<div class = "row justify-content-center">
+  <%= render 'layouts/post_sidebar' %>
+  <div class = "main-content col-sm-10 col-lg-7">
+    <div class = "post-content mt-3">
+      <div class = "post-search">
+        <%= form_with url: posts_path, method: :get do |f| %>
+          <div class = "search-field d-flex">
+            <%=f.search_field :keyword, value: params[:keyword], class: "form-control border-radius w-50 mr-3" %>
+            <%= f.submit "検索", class: "btn btn-primary mb-5" %>
+          </div>
+        <% end %>
+      </div>
 
-  <% @posts.each do |post| %>
-    <%= link_to post.title, post_path(post.id) %>
-    <%= post.body %>
-    <%= link_to post.embed_url, post.embed_url %>
-    <%= image_tag post.image.variant(resize_to_limit: [300, 200]) if post.image.attached? && post.image.content_type.starts_with?('image') %>
-    <%= video_tag polymorphic_path(post.video), controls: true, size: "300x300" if post.video.attached? %>
-    <br />
-  <% end %>
+      <div class = "post-area">
+        <% @posts.each do |post| %>
+          <div class = "post mt-5">
+            <div class = "post-profile mb-3">
+            <%= link_to client_path(post.client) do %>
+              <%= image_tag post.client.icon_image, class: "rounded-circle" %>
+              <%= post.client.name %>
+            <% end %>
+          </div>
+            <div class = "post-title mb-3">
+              <%= link_to post.title.truncate(30), post_path(post.id) %>
+            </div>
+            <div class = "post-body mb-3">
+              <%= post.body %>
+            </div>
+            <div class = "post-url mb-3">
+              <%= link_to post.embed_url, post.embed_url %>
+            </div>
+            <%= image_tag post.resized_image, class: "mb-3" if post.image.attached? && post.image.content_type.starts_with?('image') %>
+            <%= video_tag polymorphic_path(post.video), controls: true, size: "635x300", class: "mb-3" if post.video.attached? %>
+          </div>
+        <% end %>
+      </div>
+　　</div>
+　</div>
 </div>

@@ -2,7 +2,7 @@
   <div class = "col-sm-8 offset-sm-2 col-md-6 offset-md-3">
     <div class = "my-content mt-3">
       <%= image_tag @client.get_profile_image(300,300) %>
-      <div class ="action-area d-flex my-3">
+      <div class ="action-area my-3">
         <h3 class = "my-3"><%= @client.name %></h3>
         <% if current_contractor %>
           <% if current_contractor.following?(@client) %>
@@ -68,10 +68,10 @@
       <%= post.body %>
       <%= link_to post.embed_url, post.embed_url %>
       <% if post.image.attached? %>
-        <%= image_tag post.image.variant(resize_to_limit: [300,200]) %>
+        <%= image_tag post.image.variant(resize_to_limit: [400,180]) %>
       <% end %>
       <% if post.video.attached? %>
-        <%= video_tag polymorphic_path(post.video), controls: true, size: "300x300"  %>
+        <%= video_tag polymorphic_path(post.video), controls: true, size: "400x180"  %>
       <% end %>
     <% end %>
     <br />

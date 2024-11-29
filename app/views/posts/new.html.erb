@@ -1,8 +1,26 @@
-<%= form_with model:@post do |f| %>
-<%= f.text_field :title ,placeholder: "タイトル" %>
-<%= f.text_area :body ,placeholder: "本文" %>
-<%= f.file_field :image ,accept: "image/*",multipe: true ,placeholder: "画像を選択"%>
-<%= f.file_field :video , accept: "video/*" ,multipe: true ,placeholder: "動画を選択"%>
-<%=f.text_field :embed_url,placeholder: "URL"%>
-<%= f.submit "投稿" %>
-<% end %>
+<div class = "row justify-content-center">
+  <div class = "post-form mt-5">
+    <%= form_with model:@post do |f| %>
+    <div class = "postform-title">
+      <%= f.text_field :title ,placeholder: "タイトル", class: "form-control border-radius mb-3" %>
+    </div>
+    <div class = "postform-body">
+      <%= f.text_area :body ,placeholder: "本文", class: "form-control border-radius mb-3 form-control-lg",rows:6 %>
+    </div>
+    <div class = "postform-image">
+      <label for="画像" class="image-label">画像</label>
+      <%= f.file_field :image ,accept: "image/*",multipe: true ,placeholder: "画像を選択", class: "mb-3" %>
+    </div>
+    <div class = "postform-video">
+      <label for="動画" class="video-label">動画</label>
+    <%= f.file_field :video , accept: "video/*" ,multipe: true ,placeholder: "動画を選択", class: "mb-3" %>
+    </div>
+    <div class = "postform-url">
+      <%=f.text_field :embed_url,placeholder: "URL", class: "form-control border-radius mb-3" %>
+    </div>
+    <div class = "postform-submit">
+      <%= f.submit "投稿", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>

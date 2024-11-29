@@ -41,4 +41,13 @@ class Client < ApplicationRecord
     end
     profile_image.variant(resize_to_limit:[width,height]).processed
   end
+
+  def icon_image
+    unless profile_image.attached?
+      file_path=Rails.root.join("app.assets/images/no_image")
+      profile_image.attach(io:File.open(file_path),filename:"default-image.jpg",content_type:"image/jpeg")
+    end
+    profile_image.variant(resize_to_fill: [100,100, { gravity: "Center" }]).processed
+  end
+
 end
