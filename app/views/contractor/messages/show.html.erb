@@ -1,23 +1,27 @@
-<h3>DM</h3>
-    <ul>
+<div class = "row justify-content-center">
+  <div class = "message-page col-lg-10 mx-auto">
+    <div class = "message-all">
       <% current_contractor.message_logs(@client).order(:created_at).each do |message| %>
-        <li>
-          <%= message.created_at.strftime("%m-%d %H:%M") %>
-          <%= message.body %>
-          <%= message.sender.name%>
-        </li>
+      <div class = "one-message">
+        <%= message.created_at.strftime("%m-%d %H:%M") %>
+        <%= message.body %>
+        <%= message.sender.name%>
+      </div>
       <% end %>
-    </ul>
-
-<% unless current_client %>
-  <%= form_with model: @message, url: contractor_messages_path do |f| %>
-  <%= f.hidden_field :receiver_id, value: @client.id %>
-      <%= f.label :body %>
-      <%= f.text_area :body, rows: 4, class: "form-control" %>
-      <%= f.label :image, "画像" %><br>
-      <%= f.file_field :image, accept: "image/*" %><br>
-      <%= f.label :video, "動画" %><br>
-      <%= f.file_field :video, accept: "video/*" %><br>
-      <%= f.submit "send", class: "btn btn-primary" %>
-  <% end %>
-<% end %>
+    </div>
+    <div class = "form-message mt-5">
+      <% unless current_client %>
+        <%= form_with model: @message, url: contractor_messages_path do |f| %>
+        <%= f.hidden_field :receiver_id, value: @client.id %>
+          <%= f.label :body %>
+          <%= f.text_area :body, rows: 4, class: "form-control" %>
+          <%= f.label :image, "画像" %><br>
+          <%= f.file_field :image, accept: "image/*" %><br>
+          <%= f.label :video, "動画" %><br>
+          <%= f.file_field :video, accept: "video/*" %><br>
+          <%= f.submit "送信", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
