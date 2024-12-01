@@ -1,11 +1,11 @@
-<div class = "row justify-content-center">
+<div class = "row justify-content-center mt-5">
   <div class = "message-page col-lg-10 mx-auto">
     <div class = "message-all">
       <% current_contractor.message_logs(@client).order(:created_at).each do |message| %>
-      <div class = "one-message">
+      <div class = "one-message mb-3">
         <%= message.created_at.strftime("%m-%d %H:%M") %>
-        <%= message.body %>
         <%= message.sender.name%>
+        <%= message.body %>
       </div>
       <% end %>
     </div>
