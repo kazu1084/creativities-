@@ -1,11 +1,11 @@
   </div>
-  <div class ="background-content" style = 'background-image: url("<%= asset_path('edit-video.jpg') %>")'>
+  <div class ="background-content" style = 'background-image: url("<%= asset_path('team.jpg') %>")'>
     <div class = "background-left">
       <div class = "background-left-texts">
         <div class = "background-texts">
-          <h3>新しい価値の提供</h3>
+          <h3>優秀なクリエイターと繋がれるSNS</h3>
           <p>Creativitiesは動画制作やYoutube、Tiktokなどのメディア運営を依頼したい人と<br />
-             動画クリエイター、マーケーターがマッチングするプラットホームです。</p>
+             動画クリエイター、マーケーターがマッチングするSNSです。</p>
         </div>
 
         <div class = "trouble-text">
@@ -28,6 +28,11 @@
 
   <div class = "login-area">
     <div class = "login-content">
-      <p>動画クリエイターはこちらから登録</p><%= link_to "受注者新規登録" ,new_contractor_registration_path %>
-      <p>仕事を依頼したい法人様はこちらから登録</p><%= link_to "発注者新規登録" ,new_client_registration_path %>
+      <p>仕事を依頼したい法人様はこちら<%= link_to "発注者新規登録" ,new_client_registration_path, class: "btn btn-success ml-2" %></p>
     </div>
+
+  <div class = "login-another">
+    <div class = "another-link">
+      <P>仕事を探している個人の方は<%= link_to "こちらへ" ,job_path %></P>
+    </div>
+  </div>

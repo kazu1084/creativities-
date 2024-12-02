@@ -33,7 +33,7 @@ height: 550px;
   background-color: black;
   display: inline-block;
   width: 50%;
-  background-color: rgba( 0, 0, 0, 0.3);
+  background-color: rgba( 0, 0, 0, 0.7);
   height: 100%;
 }
 
@@ -41,22 +41,17 @@ height: 550px;
   padding: 30px;
 }
 
-.background-texts h3 {
-  padding: 0.8rem 0;
-  margin-bottom: 0.2rem;
-  background-image: linear-gradient(90deg, #b6ddb3 0 50px, transparent 50px 60px, #121212 0 60px);
-  background-repeat: no-repeat;
-  background-size: 100% 3px;
-  background-position: bottom;
-  color: white;
-  font-weight: bold;
-  font-size: 26px;
-}
-
-.background-texts p,h3 {
-  color :white;
+.background-texts h3,p {
   font-weight: bold;
   text-align: left;
+}
+
+.background-texts h3 {
+  color : #FFFF11;
+}
+
+.background-texts p, {
+  color : white;
 }
 
 .trouble-text {
@@ -64,9 +59,16 @@ height: 550px;
 }
 
 .trouble-text p,h3,li{
-  color : white;
   font-weight: bold;
   text-align: left;
+}
+
+.trouble-text h3 {
+  color: #FF3366;
+}
+
+.trouble-text li {
+  color: white;
 }
 
 .appeal-text {
@@ -74,9 +76,16 @@ height: 550px;
 }
 
 .appeal-text h3,p {
-  color : white;
   font-weight: bold;
   text-align: left;
+}
+
+.appeal-text h3 {
+  color: #DAA520;
+}
+
+.appeal-text p {
+  color : white;
 }
 
 .login-content {
@@ -85,6 +94,10 @@ height: 550px;
 
 .login-content p {
   color: brack;
+}
+
+.login-another {
+  padding-left: 40px;
 }
 
 .content-form {

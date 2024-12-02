@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :contractors
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'homes/about' => 'homes#about',as: 'about'
+  get 'homes/job' => 'homes#job' ,as: 'job'
   resources :posts,only: [:index, :show, :new, :edit, :create, :destroy, :update] do
       resources :comments,only: [:create,:destroy]
       resources :bookmarks,only: [:create,:destroy]
