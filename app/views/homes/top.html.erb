@@ -1,13 +1,33 @@
   </div>
   <div class ="background-content" style = 'background-image: url("<%= asset_path('edit-video.jpg') %>")'>
-<div class = "background-texts">
-      <h3>新しい価値の提供</h3>
-      <p>Creativitiesは動画制作やYoutube、Tiktokなどのメディア運営を依頼したい人と<br />
-         動画クリエイター、マーケーターがマッチングするプラットホームです。</p>
+    <div class = "background-left">
+      <div class = "background-left-texts">
+        <div class = "background-texts">
+          <h3>新しい価値の提供</h3>
+          <p>Creativitiesは動画制作やYoutube、Tiktokなどのメディア運営を依頼したい人と<br />
+             動画クリエイター、マーケーターがマッチングするプラットホームです。</p>
+        </div>
+
+        <div class = "trouble-text">
+          <h3>こんな悩みありませんか？</h3>
+          <ul>
+            <li>動画編集者が足りない…</li>
+            <li>自社のYoutubeの運営を手伝ってくれる人が欲しい！</li>
+            <li>新しくYoutubeやTiktokでチャンネルをつくってPRしたい！</li>
+          </ul>
+        </div>
+
+        <div class = "appeal-text">
+          <h3>全てこのCreativitiesで解決できます！</h3>
+          <p>様々な動画編集者や動画マーケターと繋がり、<br />
+              企業やサービス、求人などの認知の拡大に貢献します</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class = "login-area">
-    <p>動画クリエイターはこちらから登録</p><%= link_to "受注者新規登録" ,new_contractor_registration_path %>
-  <p>仕事を依頼したい法人様はこちらから登録</p><%= link_to "発注者新規登録" ,new_client_registration_path %>
-  </div>
+    <div class = "login-content">
+      <p>動画クリエイターはこちらから登録</p><%= link_to "受注者新規登録" ,new_contractor_registration_path %>
+      <p>仕事を依頼したい法人様はこちらから登録</p><%= link_to "発注者新規登録" ,new_client_registration_path %>
+    </div>
