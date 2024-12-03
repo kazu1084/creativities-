@@ -64,6 +64,7 @@
    </div>
    <div class ="card-post">
     <% @posts.each do |post| %>
+      <div class = "client-post">
       <%= link_to post.title, post_path(post.id) %>
       <%= post.body %>
       <%= link_to post.embed_url, post.embed_url %>
@@ -73,6 +74,7 @@
       <% if post.video.attached? %>
         <%= video_tag polymorphic_path(post.video), controls: true, size: "400x180"  %>
       <% end %>
+      </div>
     <% end %>
     <br />
     </div>

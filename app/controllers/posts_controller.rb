@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
     @posts = @posts.where('title LIKE ?', "%#{params[:keyword]}%").or(
              @posts.where('body LIKE ?', "%#{params[:keyword]}%"))
   end
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
-  
+
 private
 def post_params
   params.require(:post).permit(:title, :body, :image, :video, :embed_url)

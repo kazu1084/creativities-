@@ -24,7 +24,7 @@ class ContractorsController < ApplicationController
     is_matching_login_client
     @contractor = Contractor.find(params[:id])
   end
-  
+
   def follows
     @contractor = Contractor.find(params[:id])
     @clients = @contractor.clients

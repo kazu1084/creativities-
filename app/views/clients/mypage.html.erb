@@ -54,12 +54,18 @@
       </div>
       <div class ="card-post">
         <% @posts.each do |post| %>
-          <%= link_to post.title, post_path(post.id) %>
-          <%= post.body %>
-          <%= link_to post.embed_url, post.embed_url %>
-          <%= image_tag post.image.variant(resize_to_limit: [400,180]) if post.image.attached? %>
-          <%= video_tag polymorphic_path(post.video), controls: true, size: "400x180" if post.video.attached? %>
-          <br />
+          <div class = "client-post">
+            <p class = "post-title"><%= link_to post.title, post_path(post.id) %></p>
+            <p class = "post-body"><%= post.body %></p>
+            <p><%= link_to post.embed_url, post.embed_url %></p>
+            <div class = "post-image">
+              <%= image_tag post.image.variant(resize_to_limit: [400,180]) if post.image.attached? %>
+            </div>
+            <div class = "post-video">
+              <%= video_tag polymorphic_path(post.video), controls: true, size: "400x180" if post.video.attached? %>
+            </div>
+            <br />
+          </div>
         <% end %>
       </div>
     </div>
