@@ -6,7 +6,7 @@
         <table class="table table-borderless">
           <tr>
             <td class="profile-image-col align-middle items-center">
-              <%= link_to image_tag(bookmark.user.get_profile_image(100,100)), client_path(bookmark.post.client_id), class: "rounded-circle"  %>
+              <%= link_to image_tag(bookmark.post.client.get_profile_image(100,100)), client_path(bookmark.post.client_id), class: "rounded-circle"  %>
             </td>
             <td class="user-show-col align-middle items-center">
               <%= link_to bookmark.post.title.truncate(20), post_path(bookmark.post.id) %>
