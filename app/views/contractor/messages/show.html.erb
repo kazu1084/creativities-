@@ -3,13 +3,14 @@
     <div class = "message-all">
       <% current_contractor.message_logs(@client).order(:created_at).each do |message| %>
       <div class = "one-message mb-3">
-        <%= message.created_at.strftime("%m-%d %H:%M") %>
         <%= image_tag message.sender.get_profile_image(100,100) %>
         <% if message.sender_type == "Client" %>
-          <%= link_to message.sender.name, client_path(message.sender) %>
+          <%= message.created_at.strftime("%m-%d %H:%M") %>
+          <%= link_to message.sender.name, client_path(message.sender) %><br />
           <%= message.body %>
         <%else %>
-          <%= message.sender.name %>
+          <%= message.created_at.strftime("%m-%d %H:%M") %>
+          <%= link_to message.sender.name, contractor_mypage_path(current_contractor) %><br />
           <%= message.body %>
         <% end %>
       </div>

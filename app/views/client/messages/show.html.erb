@@ -1,29 +1,33 @@
-<h3>DM</h3>
-    <ul>
-      <% current_client.message_logs(@contractor).order(:created_at).each do |message| %>
-        <li class = "message-area mb-3">
-          <%= message.created_at.strftime("%m-%d %H:%M") %>
-          <%= image_tag message.sender.get_profile_image(100,100) %>
-          <% if message.sender_type == "Contractor" %>
-            <%= link_to message.sender.name, contractor_path(message.sender) %>
-            <%= message.body %>
-          <% else %>
-            <%= message.sender.name %>
-            <%= message.body %>
+    <div class = "row justify-content-center mt-5">
+      <div class = "message-page col-lg-10 mx-auto">
+        <div class = "message-all">
+          <% current_client.message_logs(@contractor).order(:created_at).each do |message| %>
+            <div class = "one-message mb-3">
+              <%= image_tag message.sender.get_profile_image(100,100) %>
+              <% if message.sender_type == "Contractor" %>
+                <%= message.created_at.strftime("%m-%d %H:%M") %>
+                <%= link_to message.sender.name, contractor_path(message.sender) %> <br />
+                <%= message.body %>
+              <% else %>
+              <%= message.created_at.strftime("%m-%d %H:%M") %>
+                <%= link_to message.sender.name, client_mypage_path(current_client) %> <br />
+                <%= message.body %>
+              <% end %>
+            </div>
           <% end %>
-        </li>
-      <% end %>
-    </ul>
+        </div>
 
-<% unless current_contractor %>
-  <%= form_with model: @message, url: client_messages_path do |f| %>
-  <%= f.hidden_field :receiver_id, value: @contractor.id %>
-      <%= f.label :body %>
-      <%= f.text_area :body, rows: 4, class: "form-control" %>
-      <%= f.label :image, "画像" %><br>
-      <%= f.file_field :image, accept: "image/*" %><br>
-      <%= f.label :video, "動画" %><br>
-      <%= f.file_field :video, accept: "video/*" %><br>
-      <%= f.submit "send", class: "btn btn-primary mt-3" %>
-  <% end %>
-<% end %>
+        <% unless current_contractor %>
+          <%= form_with model: @message, url: client_messages_path do |f| %>
+          <%= f.hidden_field :receiver_id, value: @contractor.id %>
+              <%= f.label :body %>
+              <%= f.text_area :body, rows: 4, class: "form-control" %>
+              <%= f.label :image, "画像" %><br>
+              <%= f.file_field :image, accept: "image/*" %><br>
+              <%= f.label :video, "動画" %><br>
+              <%= f.file_field :video, accept: "video/*" %><br>
+              <%= f.submit "send", class: "btn btn-primary mt-3" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
