@@ -9,7 +9,7 @@ def create
   @review = Review.new(review_params)
   @review.client_id = current_client.id
   if @review.save
-     redirect_to contractor_path(@contractor)
+     redirect_to contractor_contractor_reviews_path(@contractor)
   else
     render:new
     flash[:notice] = "Reviewが送信できませんでした。"
