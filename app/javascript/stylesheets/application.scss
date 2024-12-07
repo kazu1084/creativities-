@@ -179,6 +179,41 @@ footer {
   height:auto;
 }
 
+.message-row {
+  display: flex;
+  align-items: flex-start;
+
+  .message-content {
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  &.right-message {
+    justify-content: flex-end;
+
+    .message-content {
+      background-color: #d1f0ff;
+      color: #333;
+    }
+  }
+
+  &.left-message {
+    justify-content: flex-start;
+
+    .message-content {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+  }
+}
+
+.message-info {
+  font-size: 12px;
+}
+
 
 @media (max-width: 576px) {
   .user-name-col {
