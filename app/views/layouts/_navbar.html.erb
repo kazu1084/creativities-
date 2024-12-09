@@ -29,7 +29,9 @@
           <li class="nav-item">
             <%= link_to "ABOUT" ,about_path, class: "nav-link" %>
           </li>
-
+          <li class="nav-item">
+            <%= link_to "お問い合わせ" , new_contacts_path, class: "nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to "ログアウト" ,destroy_contractor_session_path, method: :delete, class: "nav-link" %>
           </li>
@@ -67,6 +69,9 @@
           </li>
           <li class="nav-item">
             <%= link_to "ABOUT" , about_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "お問い合わせ" , new_contacts_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "ログアウト" ,destroy_client_session_path, method: :delete, class: "nav-link" %>

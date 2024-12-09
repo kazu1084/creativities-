@@ -7,6 +7,6 @@ class CreateReviews < ActiveRecord::Migration[6.1]
     t.text :body, null: false
       t.timestamps
     end
-    
+
   end
 end

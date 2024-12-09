@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :contacts, only: [:new, :create] do
+   get 'confirm' => 'contacts#confirm'
+  end
+
   resources :contractors,only: [:show, :edit, :update] do
     get 'mypage' => 'contractors#mypage'
     get 'bookmarks' => 'bookmarks#index', as: 'bookmarks'
@@ -53,5 +57,6 @@ Rails.application.routes.draw do
     resources :clients, only: [:index, :destroy]
     resources :contractors, only: [:index, :destroy]
     resources :comments, only: [:index, :destroy]
+    resources :contacts, only: [:index, :show, :destroy]
   end
 end
