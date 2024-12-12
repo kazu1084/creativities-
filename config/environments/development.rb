@@ -32,9 +32,22 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
-
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    user_name:  ENV['MAILER_ADDRESS'],
+    password:  ENV['MAILER_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
+  #plainで暗号化されている文字を平文にする
+  #enabler...自動的にTLS/SSLで接続を切り替え通信を暗号化して、セキュリティを強化
 
   config.action_mailer.perform_caching = false
 

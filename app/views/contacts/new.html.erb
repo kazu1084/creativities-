@@ -1,6 +1,9 @@
 <div class = "row justify-content-center">
   <div class = "cont-form mt-5">
-    <%= form_with model:@contact do |f| %>
+     <div class="mb-2">
+      <%= flash[:alert] %>
+    </div>
+    <%= form_with model: @contact, url: confirm_contacts_path, method: :post do |f| %>
     <div class = "postform-title">
       <label for="名前" class="name-label">名前（<span class = "text-danger">*</span>必須）</label>
       <%= f.text_field :name, class: "form-control border-radius mb-3" %>
@@ -11,7 +14,7 @@
     </div>
     <div class = "postform-body">
       <label for="問い合わせ内容" class="contact-label">問い合わせ内容（<span class = "text-danger">*</span>必須）</label>
-      <%= f.text_area :body, class: "form-control border-radius mb-3 form-control-lg",rows:6 %>
+      <%= f.text_area :body, class: "form-control border-radius mb-3 form-control-lg",rows:8 %>
     </div>
     <div class = "postform-submit">
       <%= f.submit "確認画面へ", class: "btn btn-primary" %>

@@ -93,14 +93,11 @@ ActiveRecord::Schema.define(version: 2024_12_09_123719) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "user_type", null: false
-    t.integer "user_id", null: false
     t.string "name", null: false
     t.string "email", null: false
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_type", "user_id"], name: "index_contacts_on_user"
   end
 
   create_table "contractors", force: :cascade do |t|

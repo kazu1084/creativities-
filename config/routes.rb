@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   resource :contacts, only: [:new, :create] do
-   get 'confirm' => 'contacts#confirm'
+   post 'confirm' => 'contacts#confirm'
   end
 
   resources :contractors,only: [:show, :edit, :update] do
