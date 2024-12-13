@@ -1,7 +1,16 @@
 class ContractorsController < ApplicationController
 
   def mypage
-    @contractor = Contractor.find(params[:contractor_id])
+    if current_client
+      redirect_to root_path, alert: "アクセスできません"
+    elsif current_contractor
+      @contractor = Contractor.find(params[:contractor_id])
+      if @contractor.id != current_contractor.id
+        redirect_to root_path, alert: "アクセスできません"
+      end
+    else
+      redirect_to root_path, alert: "ログインが必要です"
+    end
   end
 
   def show
@@ -9,7 +18,7 @@ class ContractorsController < ApplicationController
   end
 
   def edit
-    @contractor = Contractor.find(params[:id])
+    is_matching_login_contractor
   end
 
   def update
@@ -21,17 +30,30 @@ class ContractorsController < ApplicationController
   end
 
   def destroy
-    is_matching_login_client
-    @contractor = Contractor.find(params[:id])
+    is_matching_login_contractor
   end
 
   def follows
-    @contractor = Contractor.find(params[:id])
+    is_matching_login_contractor
     @clients = @contractor.clients
   end
 
   private
   def contractor_params
     params.require(:contractor).permit(:name, :profile_image, :area, :introduction, :skill, :experience)
+  end
+
+  def is_matching_login_contractor
+    if current_client
+      redirect_to root_path, alert: "アクセスできません"
+    elsif current_contractor
+      @contractor = Contractor.find(params[:id])
+      if @contractor.id != current_contractor.id
+        redirect_to root_path, alert: "アクセスできません"
+      else
+      end
+    else
+      redirect_to root_path, alert: "ログインが必要です"
+    end
   end
 end

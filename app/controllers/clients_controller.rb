@@ -1,7 +1,18 @@
 class ClientsController < ApplicationController
+
   def mypage
-    @client = Client.find(params[:client_id])
-    @posts = @client.posts
+    if current_contractor
+      redirect_to root_path, alert: "アクセスできません"
+    elsif current_client
+      @client = Client.find(params[:client_id])
+      if @client.id != current_client.id
+        redirect_to root_path, alert: "アクセスできません"
+      else
+      @posts = @client.posts
+      end
+    else
+      redirect_to root_path, alert: "ログインが必要です"
+    end
   end
 
   def show
@@ -10,7 +21,7 @@ class ClientsController < ApplicationController
   end
 
   def edit
-    @client = Client.find(params[:id])
+    is_matching_login_client
   end
 
   def update
@@ -27,12 +38,26 @@ class ClientsController < ApplicationController
   end
 
   def follows
-    @client = Client.find(params[:id])
+    is_matching_login_client
     @contractors = @client.contractors
   end
 
   private
   def client_params
     params.require(:client).permit(:name, :profile_image, :area, :introduction, :purpose, :goal)
+  end
+
+  def is_matching_login_client
+    if current_contractor
+      redirect_to root_path, alert: "アクセスできません"
+    elsif current_client
+      @client = Client.find(params[:id])
+      if @client.id != current_client.id
+        redirect_to root_path, alert: "アクセスできません"
+      else
+      end
+    else
+      redirect_to root_path, alert: "ログインが必要です"
+    end
   end
 end

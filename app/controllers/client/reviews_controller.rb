@@ -12,7 +12,7 @@ def create
      redirect_to contractor_contractor_reviews_path(@contractor)
   else
     render:new
-    flash[:notice] = "Reviewが送信できませんでした。"
+    flash[:notice] = "Reviewが送信できませんでした"
   end
 end
 
