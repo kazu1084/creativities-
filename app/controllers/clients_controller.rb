@@ -2,11 +2,11 @@ class ClientsController < ApplicationController
 
   def mypage
     if current_contractor
-      redirect_to root_path, alert: "アクセスできません"
+      redirect_to posts_path, alert: "アクセスできません"
     elsif current_client
       @client = Client.find(params[:client_id])
       if @client.id != current_client.id
-        redirect_to root_path, alert: "アクセスできません"
+        redirect_to posts_path, alert: "アクセスできません"
       else
       @posts = @client.posts
       end
@@ -49,11 +49,11 @@ class ClientsController < ApplicationController
 
   def is_matching_login_client
     if current_contractor
-      redirect_to root_path, alert: "アクセスできません"
+      redirect_to posts_path, alert: "アクセスできません"
     elsif current_client
       @client = Client.find(params[:id])
       if @client.id != current_client.id
-        redirect_to root_path, alert: "アクセスできません"
+        redirect_to posts_path, alert: "アクセスできません"
       else
       end
     else

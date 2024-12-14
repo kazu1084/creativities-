@@ -2,11 +2,11 @@ class ContractorsController < ApplicationController
 
   def mypage
     if current_client
-      redirect_to root_path, alert: "アクセスできません"
+      redirect_to posts_path, alert: "アクセスできません"
     elsif current_contractor
       @contractor = Contractor.find(params[:contractor_id])
       if @contractor.id != current_contractor.id
-        redirect_to root_path, alert: "アクセスできません"
+        redirect_to posts_path, alert: "アクセスできません"
       end
     else
       redirect_to root_path, alert: "ログインが必要です"
@@ -45,11 +45,11 @@ class ContractorsController < ApplicationController
 
   def is_matching_login_contractor
     if current_client
-      redirect_to root_path, alert: "アクセスできません"
+      redirect_to posts_path, alert: "アクセスできません"
     elsif current_contractor
       @contractor = Contractor.find(params[:id])
       if @contractor.id != current_contractor.id
-        redirect_to root_path, alert: "アクセスできません"
+        redirect_to posts_path, alert: "アクセスできません"
       else
       end
     else

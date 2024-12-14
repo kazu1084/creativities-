@@ -16,12 +16,27 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-    Comment.find(params[:id]).destroy
-    redirect_to post_path(params[:post_id])
+      @comment = Comment.find(params[:id])
+      if current_client
+        if @comment.user.id == current_client.id
+           @comment.destroy
+           redirect_to post_path(@comment.post_id)
+        else
+           redirect_to post_path(@comment.post_id)
+        end
+      end
+      if current_contractor
+        if @comment.user.id == current_contractor.id
+           @comment.destroy
+           redirect_to post_path(@comment.post_id)
+        else
+           redirect_to post_path(@comment.post_id)
+        end
+      end
     end
 
     private
-    def comment_params
-    params.require(:comment).permit(:content)
-    end
+      def comment_params
+      params.require(:comment).permit(:content)
+      end
 end

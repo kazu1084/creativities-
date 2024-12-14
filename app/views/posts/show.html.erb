@@ -17,11 +17,22 @@
           <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
         </div>
           <%= comment.content %>
-          <%= link_to post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-            <i class="fa-regular fa-trash-can"></i>
+          <% if current_client %>
+            <% if comment.user_type == "Client" && current_client.id == comment.user_id %>
+              <%= link_to post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                <i class="fa-regular fa-trash-can"></i>
+              <% end %>
+            <% end %>
           <% end %>
-    </div>
-    <% end %>
+          <% if current_contractor %>
+            <% if comment.user_type == "Contractor" && current_contractor.id == comment.user_id %>
+                <%= link_to post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                  <i class="fa-regular fa-trash-can"></i>
+                <% end %>
+            <% end %>
+          <% end %>
+      </div>
+      <% end %>
     <div class = "comment-form-area mt-3">
       <%= form_with model: [@post, @comment] do |f| %>
         <div class = "comment-form">
@@ -55,11 +66,13 @@
       <%= video_tag polymorphic_path(@post.video), controls: true, size: "635x300", class: "mb-3" if @post.video.attached? %>
     </div>
     <div class = "icon-group d-flex">
-      <%= link_to edit_post_path, class: "mr-3" do %>
-        <i class="fa-regular fa-pen-to-square" style="font-size: 35px;"></i>
-      <% end %>
-      <%= link_to post_path(@post) ,method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-        <i class="fa-regular fa-trash-can large" style="font-size: 35px;"></i>
+      <% if current_client && current_client.id == @post.client_id %>
+        <%= link_to edit_post_path, class: "mr-3" do %>
+          <i class="fa-regular fa-pen-to-square" style="font-size: 35px;"></i>
+        <% end %>
+        <%= link_to post_path(@post) ,method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+          <i class="fa-regular fa-trash-can large" style="font-size: 35px;"></i>
+        <% end %>
       <% end %>
       <div class = "ml-auto">
         <% if @bookmark.present? %>

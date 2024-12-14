@@ -31,16 +31,19 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    access_limit_client
   end
 
   def update
     @post = Post.find(params[:id])
+    access_limit_client
     @post.update(post_params)
     redirect_to post_path(@post.id)
   end
 
   def destroy
     @post = Post.find(params[:id])
+    access_limit_client
     @post.destroy
     redirect_to posts_path
   end
@@ -49,5 +52,18 @@ private
 def post_params
   params.require(:post).permit(:title, :body, :image, :video, :embed_url)
 end
+
+  def access_limit_client
+    if current_contractor
+      redirect_to posts_path, alert: "アクセスできません"
+    elsif current_client
+      if @post.client_id != current_client.id
+        redirect_to posts_path, alert: "アクセスできません"
+      else
+      end
+    else
+      redirect_to root_path, alert: "ログインが必要です"
+    end
+  end
 
 end
