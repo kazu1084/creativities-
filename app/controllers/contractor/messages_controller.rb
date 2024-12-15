@@ -1,4 +1,5 @@
 class Contractor::MessagesController < ApplicationController
+  before_action :authenticate_contractor!
 
   def new
     @client = Client.find(params[:client_id])
