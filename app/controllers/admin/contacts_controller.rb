@@ -1,4 +1,5 @@
 class Admin::ContactsController < ApplicationController
+  
   layout 'admin'
   before_action :authenticate_admin!
 

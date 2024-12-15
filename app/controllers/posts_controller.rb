@@ -1,9 +1,15 @@
 class PostsController < ApplicationController
   def new
+    unless current_client
+      redirect_back(fallback_location: root_url)
+    end
     @post = Post.new
   end
 
   def create
+    unless current_client
+      redirect_to root_path
+    end
     @post = Post.new(post_params)
     @post.client_id = current_client.id
     if @post.save

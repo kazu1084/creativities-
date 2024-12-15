@@ -1,5 +1,8 @@
 class Client::ReviewsController < ApplicationController
 def new
+  unless current_client
+    redirect_to root_path
+  end
   @contractor = Contractor.find(params[:contractor_id])
   @review = Review.new
 end
