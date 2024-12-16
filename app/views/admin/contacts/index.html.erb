@@ -11,7 +11,7 @@
     </tr>
     <tr>
       <td>問い合わせ内容</td>
-      <td><%= contact.body.truncate(20) %></td>
+      <td><%= link_to contact.body.truncate(20) , admin_contact_path(contact.id) %><%= link_to "delete", admin_contact_path(contact), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger ml-3" %></td>
     </tr>
   </table>
 <% end %>

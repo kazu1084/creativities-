@@ -1,6 +1,10 @@
-<h1>Contractor一覧</h1>
+<h3>Contractor一覧</h3>
   <% @contractors.each do |contractor| %>
-  <%= contractor.name %>
-  <%= link_to "delete", admin_contractor_path(contractor), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
-  <br />
+    <table class="table table-striped-columns mt-5">
+      <tr>
+        <td><%= link_to contractor.name, contractor_path(contractor.id) %></td>
+        <td><%= link_to "delete", admin_contractor_path(contractor), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+      </tr>
+    </table>
+   </br >
 <% end %>
