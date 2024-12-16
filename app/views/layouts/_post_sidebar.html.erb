@@ -1,4 +1,19 @@
 <div class = "post-sidebar col-lg-3">
-  <div class = "post-search">
+ <div class = "post-search">
+    <%= form_with url: posts_path, method: :get do |f| %>
+      <div class = "search-field">
+        <%=f.search_field :keyword, value: params[:keyword], class: "form-control border-radius w-50 mr-3 w-100 mt-5 my-2" %>
+        <%= f.submit "検索", class: "btn btn-primary mb-5" %>
+      </div>
+    <% end %>
+  </div>
+  <div class = "picup-search">
+    <h4 class = "mb-3">検索ワード</h4>
+    <% words = ["Youtube","動画編集","Youtubeの運用","Youtubeの台本作成","ショート動画","Tiktok","Tiktokの台本作成","動画広告","SNS運用"] %>
+    <% words.each do |word| %>
+      <p class = "border-bottom border-secondary-subtle border-opacity-25">
+        <%= link_to word, posts_path(keyword: word),class: params[:keyword] == word ? "text-primary font-weight-bold" : '' %>
+      </p>
+    <% end %>
   </div>
 </div>

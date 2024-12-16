@@ -1,16 +1,7 @@
 <div class = "row justify-content-center">
   <%= render 'layouts/post_sidebar' %>
-  <div class = "main-content col-sm-10 col-lg-7">
+  <div class = "main-content col-sm-10 col-lg-7 offset-5">
     <div class = "post-content mt-3">
-      <div class = "post-search">
-        <%= form_with url: posts_path, method: :get do |f| %>
-          <div class = "search-field d-flex">
-            <%=f.search_field :keyword, value: params[:keyword], class: "form-control border-radius w-50 mr-3" %>
-            <%= f.submit "検索", class: "btn btn-primary mb-5" %>
-          </div>
-        <% end %>
-      </div>
-
       <div class = "post-area">
         <% @posts.each do |post| %>
           <div class = "post-index mt-4">

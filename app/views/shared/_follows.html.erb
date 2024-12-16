@@ -1,13 +1,12 @@
 <div class = "row justify-content-center">
-  <div class = "col-sm-10 col-md-7">
-    <h2 class ="mt-3 text-center">フォロー一覧</h2>
+  <div class = "col-sm-10 col-md-7 mt-5">
     <% followings.each do |user| %>
     <div class = "user-field">
       <table class="table table-borderless">
         <tr>
           <td class="profile-image-col align-middle items-center"><%= image_tag user.get_profile_image(100,100), class: "rounded-circle" %></td>
           <td class="user-name-col align-middle text-center"><%= user.name.truncate(15) %></td>
-          <td class="user-show-col align-middle items-center"><%= link_to "詳細", user, class: "btn btn-outline-primary" %></td>
+          <td class="user-show-col align-middle items-center"><%= link_to "プロフィール", user, class: "btn btn-outline-primary" %></td>
         </tr>
       </table>
     </div>
