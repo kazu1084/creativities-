@@ -1,0 +1,11 @@
+<h3>Bookmark一覧</h3>
+<% @bookmarks.each do |bookmark| %>
+  <table class="table table-striped-columns mt-3">
+    <tr>
+      <td>ブックマークした投稿ID</td>
+      <td><%= link_to bookmark.post_id, post_path(bookmark.post_id) %></td>
+    </tr>
+    <br />
+  </table>
+<% end %>
+<%= link_to "ユーザページに戻る", admin_client_path(@client), class: "mb-5 d-block" %>

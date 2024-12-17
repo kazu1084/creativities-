@@ -7,6 +7,10 @@ class Admin::ClientsController < ApplicationController
     @clients = Client.where('name LIKE ?', "%#{params[:name]}%")
   end
 
+  def show
+    @client = Client.find(params[:id])
+  end
+
   def destroy
     @client = Client.find(params[:id])
     @client.destroy

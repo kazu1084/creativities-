@@ -221,6 +221,12 @@ footer {
 }
 //post_sidebarここまで
 
+//adminの検索欄
+.search-field {
+  width: 50%;
+}
+//adminの検索欄ここまで
+
 @media (max-width: 576px) {
   .user-name-col {
     font-size: 10px;

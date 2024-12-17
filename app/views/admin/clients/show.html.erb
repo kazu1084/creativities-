@@ -1,0 +1,32 @@
+<table class="table table-striped-columns mt-5">
+    <tr>
+      <td>name</td>
+      <td><%= link_to @client.name, client_path(@client.id) %></td>
+    </tr>
+    <tr>
+      <td>投稿</td>
+      <td><%= link_to 'User submitted posts', client_path(@client.id) %></td>
+    </tr>
+    <tr>
+      <td>コメント</td>
+      <td><%= link_to "User comments", admin_client_comments_path(@client.id) %></td>
+    </tr>
+    <tr>
+      <td>ブックマーク</td>
+      <td><%= link_to "User's bookmarked posts", admin_client_bookmarks_path(@client.id) %></td>
+    </tr>
+    <tr>
+      <td>フォロー</td>
+      <td><%= link_to "Followed users", admin_client_follows_path(@client.id) %></td>
+    </tr>
+    <tr>
+      <td>レビュー</td>
+      <td><%= link_to "User submitted reviews", admin_client_reviews_path(@client.id) %></td>
+    </tr>
+     <tr>
+      <td>メッセージ</td>
+      <td><%= link_to "User's Message list", admin_client_messages_path(@client.id) %></td>
+    </tr>
+
+    <td><%= link_to "delete", admin_client_path(@client), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+</table>

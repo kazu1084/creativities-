@@ -1,0 +1,17 @@
+<%= form_with url: admin_client_follows_path, method: :get do |f| %>
+    <div class = "search-field">
+      <%=f.search_field :keyword, value: params[:keyword], class: "form-control border-radius w-50 mr-3 w-100 mt-5 my-2" %>
+      <%= f.submit "検索", class: "btn btn-primary mb-5" %>
+    </div>
+  <% end %>
+<h3>Follow一覧</h3>
+<% @follows.each do |follow| %>
+  <table class="table table-striped-columns mt-3">
+    <tr>
+      <td>フォローしたユーザー名</td>
+      <td><%= link_to follow.user.name, contractor_path(follow.user.id) %></td>
+    </tr>
+    <br />
+  </table>
+<% end %>
+<%= link_to "ユーザページに戻る", admin_client_path(@client), class: "mb-5 d-block" %>

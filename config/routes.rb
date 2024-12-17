@@ -54,9 +54,21 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "clients#index"
-    resources :clients, only: [:index, :destroy]
-    resources :contractors, only: [:index, :destroy]
-    resources :comments, only: [:index, :destroy]
+    resources :clients, only: [:index, :show, :destroy] do
+        resources :comments, module: :clients, only: [:index, :destroy]
+        resources :bookmarks, module: :clients,only: [:index, :destroy]
+        resources :follows, module: :clients,only: [:index]
+        resources :reviews, module: :clients,only: [:index, :destroy]
+        resources :messages, module: :clients,only: [:index, :show, :destroy]
+    end
+    resources :contractors, only: [:index, :show, :destroy] do
+      resources :comments, only: [:index, :destroy]
+      resources :bookmarks, only: [:index, :destroy]
+      resources :follows, only: [:index]
+      resources :reviews, only: [:index, :destroy]
+      resources :messages, only: [:index, :show, :destroy]
+    end
     resources :contacts, only: [:index, :show, :destroy]
+    resources :posts, only: [:destroy]
   end
 end

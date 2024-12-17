@@ -4,6 +4,7 @@ class Admin::ContractorsController < ApplicationController
 
   def index
     @contractors = Contractor.all
+    @contractors = Contractor.where('name LIKE ?', "%#{params[:name]}%")
   end
 
   def destroy

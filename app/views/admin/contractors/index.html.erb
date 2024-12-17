@@ -1,3 +1,11 @@
+<div class = "post-search">
+  <%= form_with url: admin_contractors_path, method: :get do |f| %>
+    <div class = "search-field">
+      <%=f.search_field :name, value: params[:name], class: "form-control border-radius w-50 mr-3 w-100 mt-5 my-2" %>
+      <%= f.submit "検索", class: "btn btn-primary mb-5" %>
+    </div>
+  <% end %>
+</div>
 <h3>Contractor一覧</h3>
   <% @contractors.each do |contractor| %>
     <table class="table table-striped-columns mt-5">
