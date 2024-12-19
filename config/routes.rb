@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     resources :clients, only: [:index, :show, :destroy] do
         resources :comments, module: :clients, only: [:index, :destroy]
         resources :bookmarks, module: :clients,only: [:index, :destroy]
-        resources :follows, module: :clients,only: [:index]
+        resources :follows, module: :clients,only: [:index, :destroy]
         resources :reviews, module: :clients,only: [:index, :destroy]
         resources :messages, module: :clients,only: [:index, :show, :destroy]
     end

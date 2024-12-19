@@ -74,6 +74,11 @@
       <div class = "review-body mt-2">
         <%= review.body %>
       </div>
+      <div class = "delete-button">
+        <% if current_client && current_client.id == review.client_id  %>
+          <%= link_to  "削除する", client_contractor_reviews_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger mt-3" %>
+        <% end %>
+      </div>
     </div>
     <% end %>
   </div>

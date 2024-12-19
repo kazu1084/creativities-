@@ -3,7 +3,8 @@
   <table class="table table-striped-columns mt-3">
     <tr>
       <td>ブックマークした投稿ID</td>
-      <td><%= link_to bookmark.post_id, post_path(bookmark.post_id) %></td>
+      <td><%= link_to bookmark.post_id, post_path(bookmark.post_id) %> <br />
+      <%= link_to "delete", admin_client_bookmark_path(bookmark.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></td></td>
     </tr>
     <br />
   </table>

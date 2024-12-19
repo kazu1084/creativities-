@@ -4,7 +4,10 @@
       <% if @contractor.profile_image.attached? %>
         <%= image_tag @contractor.get_profile_image(300,300) %>
       <% end %>
-      <h3 class = "my-3"><%= @contractor.name %></h3>
+      <div class = "profile-top d-flex">
+        <h3 class = "my-3"><%= @contractor.name %></h3>
+        <%= link_to "レビュー一覧", contractor_contractor_reviews_path, class: "btn btn-primary my-3 ml-3" %>
+      </div>
     </div>
 
       <div class="content-body shadow p-3 mb-5 bg-white rounded">

@@ -5,11 +5,12 @@
     </div>
   <% end %>
 <h3>Follow一覧</h3>
-<% @follows.each do |follow| %>
+<% @client.contractors.each do |user| %>
   <table class="table table-striped-columns mt-3">
     <tr>
       <td>フォローしたユーザー名</td>
-      <td><%= link_to follow.user.name, contractor_path(follow.user.id) %></td>
+      <td><%= link_to user.name, contractor_path(user.id) %> <br />
+      <%= link_to "delete", admin_client_follow_path(), method: :delete, data: { confirm: "本当に削除しますか？" } %></td></td>
     </tr>
     <br />
   </table>
