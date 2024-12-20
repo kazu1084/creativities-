@@ -1,4 +1,10 @@
-<%= flash[:notice] %>
+<% if @review.errors.any? %>
+  <%= @review.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @review.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+<% end %>
 <div class = "row">
   <div class = "user-show col-lg-6">
     <div class = "my-content mt-3">

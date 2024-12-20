@@ -14,8 +14,8 @@ def create
   if @review.save
      redirect_to contractor_contractor_reviews_path(@contractor)
   else
-    render:new
-    flash[:notice] = "Reviewが送信できませんでした"
+    flash.now[:alert] = "評価を送信できませんでした"
+    render :new
   end
 end
 
