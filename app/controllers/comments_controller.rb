@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
      if @comment.save
        redirect_to post_path(@post.id) ,notice: "Comment created!!"
      else
-       redirect_to post_path(@post.id) ,notice: "Comment failed…"
+       redirect_to post_path(@post.id) ,alert: "Comment failed…"
      end
     end
 

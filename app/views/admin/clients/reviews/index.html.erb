@@ -19,7 +19,7 @@
     <tr>
       <td>レビューの内容</td>
         <td><%= review.body %><br />
-        <%= link_to "delete", admin_client_reviews_path() %>
+        <%= link_to "delete", admin_client_review_path(client_id: review.client_id, id: review.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
         </td>
     </tr>
     <br />

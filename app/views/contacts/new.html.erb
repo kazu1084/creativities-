@@ -1,3 +1,10 @@
+<% if @contact.errors.any? %>
+  <%= @contact.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @contact.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+<% end %>
 <div class = "row justify-content-center">
   <div class = "cont-form mt-5">
      <div class="mb-2">
