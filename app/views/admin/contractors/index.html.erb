@@ -10,7 +10,7 @@
   <% @contractors.each do |contractor| %>
     <table class="table table-striped-columns mt-5">
       <tr>
-        <td><%= link_to contractor.name, contractor_path(contractor.id) %></td>
+        <td><%= link_to contractor.name, admin_contractor_path(contractor.id) %></td>
         <td><%= link_to "delete", admin_contractor_path(contractor), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
       </tr>
     </table>

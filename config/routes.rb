@@ -62,11 +62,10 @@ Rails.application.routes.draw do
         resources :messages, module: :clients,only: [:index, :show, :destroy]
     end
     resources :contractors, only: [:index, :show, :destroy] do
-      resources :comments, only: [:index, :destroy]
-      resources :bookmarks, only: [:index, :destroy]
-      resources :follows, only: [:index]
-      resources :reviews, only: [:index, :destroy]
-      resources :messages, only: [:index, :show, :destroy]
+      resources :comments, module: :contractors, only: [:index, :destroy]
+      resources :bookmarks, module: :contractors, only: [:index, :destroy]
+      resources :follows, module: :contractors, only: [:index, :destroy]
+      resources :messages, module: :contractors, only: [:index, :show, :destroy]
     end
     resources :contacts, only: [:index, :show, :destroy]
     resources :posts, only: [:destroy]

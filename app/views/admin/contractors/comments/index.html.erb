@@ -1,0 +1,22 @@
+<%= form_with url: admin_contractor_comments_path, method: :get do |f| %>
+    <div class = "search-field">
+      <%=f.search_field :keyword, value: params[:keyword], class: "form-control border-radius w-50 mr-3 w-100 mt-5 my-2" %>
+      <%= f.submit "検索", class: "btn btn-primary mb-5" %>
+    </div>
+  <% end %>
+<h3>Comment一覧</h3>
+<% @comments.each do |comment| %>
+  <table class="table table-striped-columns mt-3">
+    <tr>
+      <td>コメントした投稿ID</td>
+      <td><%= link_to comment.post_id, post_path(comment.post_id) %></td>
+    </tr>
+    <tr>
+      <td>コメント内容</td>
+      <td><%= comment.content %><br />
+      <%= link_to "delete", admin_contractor_comment_path(comment.post_id, comment.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+    </tr>
+    <br />
+  </table>
+<% end %>
+<%= link_to "ユーザページに戻る", admin_contractor_path(@contractor), class: "mb-5 d-block" %>

@@ -10,6 +10,7 @@ class Admin::Clients::FollowsController < ApplicationController
 
   def destroy
     @client = Client.find(params[:client_id])
+    contractor = Contractor.find(params[:id])
     @client.unfollow(contractor)
     flash[:notice] = "success"
     redirect_to admin_client_follows_path

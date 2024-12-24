@@ -1,16 +1,16 @@
 <div class = "row justify-content-center mt-5">
-  <%= link_to "メッセージをすべて削除する", admin_client_message_path, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  <%= link_to "メッセージをすべて削除する", admin_contractor_message_path, method: :delete, data: { confirm: "本当に削除しますか？" } %>
   <div class = "message-page col-lg-10 mx-auto">
     <div class = "message-all">
-      <% @client.message_logs(@contractor).order(:created_at).each do |message| %>
-          <% if message.sender == @client %>
+      <% @contractor.message_logs(@client).order(:created_at).each do |message| %>
+          <% if message.sender == @contractor %>
             <div class="message-row right-message mb-3 text-end">
               <div class="message-content d-inline-block">
                 <%= message.body %>
               </div>
               <div class="message-info text-muted mt-2">
                 <%= message.created_at.strftime("%m-%d %H:%M") %>
-                <%= link_to message.sender.name, client_path(@client.id) %>
+                <%= link_to message.sender.name, contractor_path(@contractor.id) %>
                 <%= image_tag message.sender.get_profile_image(100,100), class: "rounded-circle ms-2" %>
               </div>
             </div>
@@ -19,7 +19,7 @@
               <div class="message-info text-muted mt-2">
                 <%= image_tag message.sender.get_profile_image(100,100), class: "rounded-circle me-2" %>
                 <%= message.created_at.strftime("%m-%d %H:%M") %>
-                <%= link_to message.sender.name, contractor_path(message.sender) %> <br />
+                <%= link_to message.sender.name, client_path(message.sender) %> <br />
               </div>
               <div class="message-content d-inline-block">
                 <%= message.body %>

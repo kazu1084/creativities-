@@ -7,6 +7,10 @@ class Admin::ContractorsController < ApplicationController
     @contractors = Contractor.where('name LIKE ?', "%#{params[:name]}%")
   end
 
+  def show
+    @contractor = Contractor.find(params[:id])
+  end
+
   def destroy
     @contractor = Contractor.find(params[:id])
     @contractor.destroy

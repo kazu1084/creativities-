@@ -1,0 +1,24 @@
+<table class="table table-striped-columns mt-5">
+    <tr>
+      <td>name</td>
+      <td><%= link_to @contractor.name, contractor_path(@contractor.id) %></td>
+    </tr>
+    <tr>
+      <td>コメント</td>
+      <td><%= link_to "User comments", admin_contractor_comments_path(@contractor.id) %></td>
+    </tr>
+    <tr>
+      <td>ブックマーク</td>
+      <td><%= link_to "User's bookmarked posts", admin_contractor_bookmarks_path(@contractor.id) %></td>
+    </tr>
+    <tr>
+      <td>フォロー</td>
+      <td><%= link_to "Followed users", admin_contractor_follows_path(@contractor.id) %></td>
+    </tr>
+     <tr>
+      <td>メッセージ</td>
+      <td><%= link_to "User's Message list", admin_contractor_messages_path(@contractor.id) %></td>
+    </tr>
+
+    <td><%= link_to "delete", admin_contractor_path(@contractor), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+</table>
