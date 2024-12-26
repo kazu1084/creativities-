@@ -233,6 +233,41 @@ footer {
   text-align: center;
 }
 
+@media (max-width: 430px) {
+  .background-left {
+    width: 100%;
+  }
+  .background-left-texts h3 {
+    font-size: 20px;
+  }
+  .background-left-texts p {
+    font-size: 13px;
+  }
+  .background-left-texts li {
+    font-size: 13px;
+  }
+
+  .post-sidebar {
+    display: none;
+  }
+
+  .main-content {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .main-content.col-sm-10,
+  .main-content.col-lg-7 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .image-size {
+    width: 80%;
+    margin: 0,auto;
+  }
+}
+
 @media (max-width: 576px) {
   .user-name-col {
     font-size: 10px;
