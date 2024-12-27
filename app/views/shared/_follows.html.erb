@@ -6,7 +6,7 @@
         <tr>
           <td class="profile-image-col align-middle items-center"><%= image_tag user.get_profile_image(100,100), class: "rounded-circle" %></td>
           <td class="user-name-col align-middle text-center"><%= user.name.truncate(15) %></td>
-          <td class="user-show-col align-middle items-center"><%= link_to "プロフィール", user, class: "btn btn-outline-primary" %></td>
+          <td class="user-show-col align-middle items-center"><%= link_to "詳細", user, class: "profile-text btn btn-outline-primary" %></td>
         </tr>
       </table>
     </div>

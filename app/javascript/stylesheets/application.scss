@@ -248,6 +248,21 @@ footer {
   }
 
   .post-sidebar {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .post-sidebar.col-lg-3 {
+    max-width: 80%;
+    position: static;
+    margin: 0 auto;
+  }
+
+  .search-submit {
+    margin-bottom: 3px;
+  }
+
+  .picup-search {
     display: none;
   }
 
@@ -265,6 +280,32 @@ footer {
   .image-size {
     width: 80%;
     margin: 0,auto;
+  }
+
+  .profile-text a {
+    font-size: 10px;
+  }
+
+  .form-message {
+    margin-top: 0px;
+  }
+
+  .message-field {
+    float: right;
+  }
+
+  .message-form {
+    height: 50px;
+    margin: 5px 0px;
+  }
+
+  .form-message {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .form-message.row.justify-content-end.mr-5 {
+    position: static;
   }
 }
 
