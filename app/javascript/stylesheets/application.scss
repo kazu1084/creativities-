@@ -242,6 +242,29 @@ footer {
   font-size: 13px;
   }
 
+  .navbar-nav.show .nav-link {
+    color: white;
+  }
+
+  .navbar-collapse {
+  transition: background-color 0.1s ease;
+}
+.navbar-collapse.show {
+  background-color: rgba(0, 0, 0, 0.7); /* 背景を少し暗く */
+  position: fixed; /* 固定して全体をカバー */
+  top: 120px;
+  left: 0;
+  bottom: 90px;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+}
+
+#navbarNav a {
+  color: #DDDDDD;
+  text-align: center;
+}
+
   .background-left {  //topページのレイアウト
     width: 100%;
   }
