@@ -20,8 +20,8 @@
             <div class = "post-url mb-3">
               <%= link_to post.embed_url, post.embed_url %>
             </div>
-            <%= image_tag post.resized_image, class: "image-size mb-4" if post.image.attached? && post.image.content_type.starts_with?('image') %>
-            <%= video_tag polymorphic_path(post.video), controls: true, size: "635x300", class: "video-size mb-4" if post.video.attached? %>
+            <%= image_tag post.resized_image, class: "images-size mb-4" if post.image.attached? && post.image.content_type.starts_with?('image') %>
+            <%= video_tag polymorphic_path(post.video), controls: true, size: "635x300", class: "images-size mb-4" if post.video.attached? %>
           </div>
         <% end %>
       </div>

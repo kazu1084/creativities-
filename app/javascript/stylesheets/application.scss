@@ -234,7 +234,15 @@ footer {
 }
 
 @media (max-width: 430px) {
-  .background-left {
+  h3 {
+   font-size: 20px;
+  }
+
+  p {
+  font-size: 13px;
+  }
+
+  .background-left {  //topページのレイアウト
     width: 100%;
   }
   .background-left-texts h3 {
@@ -245,6 +253,18 @@ footer {
   }
   .background-left-texts li {
     font-size: 13px;
+  }　　//topページのレイアウトここまで
+
+  .about-content h3 { //aboutページのレイアウトここから
+    font-size: 20px;
+  }
+
+  .about-content p {
+    font-size: 13px;
+  }
+
+  .about-image {
+    height: 250px;
   }
 
   .post-sidebar {
@@ -256,6 +276,14 @@ footer {
     max-width: 80%;
     position: static;
     margin: 0 auto;
+  }
+
+  .post-comments {
+    margin: 0 auto;
+  }
+
+  .fa-solid .fa-bookmark {
+    margin-left: auto
   }
 
   .search-submit {
@@ -277,9 +305,20 @@ footer {
     max-width: 100%;
   }
 
-  .image-size {
+  .images-size {
     width: 80%;
-    margin: 0,auto;
+    text-align: center;
+  }
+
+  .image-size {
+    width: 100%;
+    text-align: center;
+  }
+
+
+
+  .post-comments {
+    width: 100%;
   }
 
   .profile-text a {
@@ -295,7 +334,7 @@ footer {
   }
 
   .message-form {
-    height: 50px;
+    height: 30px;
     margin: 5px 0px;
   }
 
@@ -304,9 +343,13 @@ footer {
     margin: 0 auto;
   }
 
-  .form-message.row.justify-content-end.mr-5 {
-    position: static;
+  .form-message.row.justify-content-end {
+    display: block;
+    justify-content: initial;
+    align-items: initial;
   }
+
+
 }
 
 @media (max-width: 576px) {

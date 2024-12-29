@@ -1,4 +1,50 @@
-<div class = "row justify-content-center">
+<div class = "post-comments row justify-content-center">
+  <div class = "post-show col-sm-10 col-lg-7">
+    <div class = "post mt-5">
+      <div class = "post-profile mb-3">
+      <%= link_to client_path(@post.client) do %>
+        <%= image_tag @post.client.icon_image, class: "rounded-circle" %>
+        <%= @post.client.name %>
+      <% end %>
+      </div>
+      <div class = "post-title mb-3">
+        <%= @post.title %>
+      </div>
+      <div class = "post-body mb-3">
+        <%= @post.body %>
+      </div>
+      <div class = "post-url mb-3">
+        <%= link_to @post.embed_url, @post.embed_url %>
+      </div>
+      <%= image_tag @post.resized_image, class: "image-size mb-3" if @post.image.attached? && @post.image.content_type.starts_with?('image') %>
+      <%= video_tag polymorphic_path(@post.video), controls: true, size: "635x300", class: "image-size mb-3" if @post.video.attached? %>
+    </div>
+    <div class = "icon-group d-flex text-right">
+      <% if current_client && current_client.id == @post.client_id %>
+        <%= link_to edit_post_path, class: "mr-3" do %>
+          <i class="fa-regular fa-pen-to-square" style="font-size: 35px;"></i>
+        <% end %>
+        <%= link_to post_path(@post) ,method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+          <i class="fa-regular fa-trash-can large" style="font-size: 35px;"></i>
+        <% end %>
+      <% end %>
+      <div class = "show-menu ml-auto">
+        <% if @bookmark.present? %>
+          <%= link_to post_bookmark_path(@post.id, @bookmark.id), method: :delete do %>
+            <i class="fa-solid fa-bookmark mr-3 text-right" style="font-size: 35px;"></i>
+          <% end %>
+        <% else %>
+          <%= link_to post_bookmarks_path(@post.id), method: :post do %>
+            <i class="fa-regular fa-bookmark mr-3 text-right" style="font-size: 35px;"></i>
+          <% end %>
+        <% end %>
+        <div class = "posts-link mt-4 ml-auto">
+          <%= link_to "投稿一覧に戻る", posts_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class = "comment-sidebar col-lg-3">
     <div class = "comment-index mt-5">
       <p>コメント件数（ <%= @post.comments.count %> ）</p>
@@ -42,52 +88,6 @@
           <%= f.submit "送信する", class: "btn btn-primary mt-3" %>
         </div>
       <% end %>
-    </div>
-  </div>
-
-  <div class = "post-show col-sm-10 col-lg-7">
-    <div class = "post mt-5">
-      <div class = "post-profile mb-3">
-      <%= link_to client_path(@post.client) do %>
-        <%= image_tag @post.client.icon_image, class: "rounded-circle" %>
-        <%= @post.client.name %>
-      <% end %>
-      </div>
-      <div class = "post-title mb-3">
-        <%= @post.title %>
-      </div>
-      <div class = "post-body mb-3">
-        <%= @post.body %>
-      </div>
-      <div class = "post-url mb-3">
-        <%= link_to @post.embed_url, @post.embed_url %>
-      </div>
-      <%= image_tag @post.resized_image, class: "mb-3" if @post.image.attached? && @post.image.content_type.starts_with?('image') %>
-      <%= video_tag polymorphic_path(@post.video), controls: true, size: "635x300", class: "mb-3" if @post.video.attached? %>
-    </div>
-    <div class = "icon-group d-flex">
-      <% if current_client && current_client.id == @post.client_id %>
-        <%= link_to edit_post_path, class: "mr-3" do %>
-          <i class="fa-regular fa-pen-to-square" style="font-size: 35px;"></i>
-        <% end %>
-        <%= link_to post_path(@post) ,method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-          <i class="fa-regular fa-trash-can large" style="font-size: 35px;"></i>
-        <% end %>
-      <% end %>
-      <div class = "ml-auto">
-        <% if @bookmark.present? %>
-          <%= link_to post_bookmark_path(@post.id, @bookmark.id), method: :delete do %>
-            <i class="fa-solid fa-bookmark mr-3 text-right" style="font-size: 35px;"></i>
-          <% end %>
-        <% else %>
-          <%= link_to post_bookmarks_path(@post.id), method: :post do %>
-            <i class="fa-regular fa-bookmark mr-3 text-right" style="font-size: 35px;"></i>
-          <% end %>
-        <% end %>
-        <div class = "posts-link mt-4 ml-auto">
-          <%= link_to "投稿一覧に戻る", posts_path %>
-        </div>
-      </div>
     </div>
   </div>
 </div>
