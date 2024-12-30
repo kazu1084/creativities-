@@ -50,12 +50,12 @@ height: 550px;
   padding: 30px;
 }
 
-.background-texts h3,p {
+.background-texts h4,p {
   font-weight: bold;
   text-align: left;
 }
 
-.background-texts h3 {
+.background-texts h4 {
   color : #00CCCC;
 }
 
@@ -67,12 +67,12 @@ height: 550px;
   margin-top : 50px;
 }
 
-.trouble-text p,h3,li{
+.trouble-text p,h4,li{
   font-weight: bold;
   text-align: left;
 }
 
-.trouble-text h3 {
+.trouble-text h4 {
   color: #FF3366;
 }
 
@@ -84,12 +84,12 @@ height: 550px;
   margin-top : 50px;
 }
 
-.appeal-text h3,p {
+.appeal-text h4,p {
   font-weight: bold;
   text-align: left;
 }
 
-.appeal-text h3 {
+.appeal-text h4 {
   color: #DAA520;
 }
 
@@ -377,12 +377,136 @@ footer {
 
 }
 
-@media (max-width: 576px) {
-  .user-name-col {
+@media (max-width: 960px) {
+.navbar-nav.show .nav-link {
+    color: white;
+  }
+
+  .navbar-collapse {
+  transition: background-color 0.1s ease;
+}
+.navbar-collapse.show {
+  background-color: rgba(0, 0, 0, 0.7); /* 背景を少し暗く */
+  position: fixed; /* 固定して全体をカバー */
+  top: 120px;
+  left: 0;
+  bottom: 90px;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+}
+
+#navbarNav a {
+  color: #DDDDDD;
+  text-align: center;
+}
+
+  .background-left {  //topページのレイアウト
+    width: 100%;
+  }
+  .background-left-texts h3 {
+    font-size: 20px;
+  }
+  .background-left-texts p {
+    font-size: 13px;
+  }
+  .background-left-texts li {
+    font-size: 13px;
+  }　　//topページのレイアウトここまで
+
+  .about-content h3 { //aboutページのレイアウトここから
+    font-size: 20px;
+  }
+
+  .about-content p {
+    font-size: 13px;
+  }
+
+  .about-image {
+    height: 250px;
+  }
+
+  .post-sidebar {
+    width: 100%;
+    margin: 0 auto 0 0;
+  }
+
+  .post-sidebar.col-lg-3 {
+    max-width: 80%;
+    position: static;
+    margin: 0 auto 0 0;
+  }
+
+  .post-comments {
+    margin: 0 auto;
+  }
+
+  .fa-solid .fa-bookmark {
+    margin-left: auto
+  }
+
+  .search-submit {
+    margin-bottom: 3px;
+  }
+
+  .picup-search {
+    display: none;
+  }
+
+  .main-content {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .main-content.col-sm-10,
+  .main-content.col-lg-7 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .images-size {
+    width: 80%;
+    text-align: center;
+  }
+
+  .image-size {
+    width: 100%;
+    text-align: center;
+  }
+
+  .post-comments {
+    width: 100%;
+  }
+
+  .profile-text a {
     font-size: 10px;
   }
-  .btn-outline-primary {
-    font-size: 15px;
-    padding: 6px;
+
+  .review-user-body {
+    display: none;
+  }
+
+  .form-message {
+    margin-top: 0px;
+  }
+
+  .message-field {
+    float: right;
+  }
+
+  .message-form {
+    height: 30px;
+    margin: 5px 0px;
+  }
+
+  .form-message {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .form-message.row.justify-content-end {
+    display: block;
+    justify-content: initial;
+    align-items: initial;
   }
 }
