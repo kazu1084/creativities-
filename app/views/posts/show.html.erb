@@ -46,11 +46,16 @@
   </div>
 
   <div class = "comment-sidebar col-lg-3">
-    <div class = "comment-index mt-5">
-      <p>コメント件数（ <%= @post.comments.count %> ）</p>
-    </div>
+      <p class = "comment-button mt-5">コメント件数（ <%= @post.comments.count %> ）</p>
+      <script>
+        jQuery(function($) {
+        $('.comment-button').on('click', function() {
+        $(".comment-show").slideToggle();
+        });
+        });
+      </script>
     <% @post.comments.each do |comment| %>
-    <div class = "comment-show mb-4">
+    <div class = "comment-show mb-4" style = "display: none;">
       <div class = "comment-user">
         <%= image_tag comment.user.icon_image, class: "rounded-circle" %>
         <% if comment.user_type == "Client" %>

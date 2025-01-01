@@ -173,6 +173,20 @@ height: 550px;
   border-bottom: 2px solid #DDDDDD;
 }
 
+.comment-show {
+  display: none;
+}
+
+.comment-button {
+  cursor: pointer;
+}
+
+.comment-button:hover {
+  width: 70%;
+  color: white;
+    background-color: #333399;
+    }
+
 .app-logo2 {
   width:80px;
   height:auto;

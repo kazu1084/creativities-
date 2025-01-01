@@ -15,7 +15,7 @@
               <%= link_to post.title.truncate(30), post_path(post.id) %>
             </div>
             <div class = "post-body mb-3">
-              <%= post.body %>
+              <%= post.body.truncate(50) %>
             </div>
             <div class = "post-url mb-3">
               <%= link_to post.embed_url, post.embed_url %>
