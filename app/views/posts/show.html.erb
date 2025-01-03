@@ -38,6 +38,7 @@
             <i class="fa-regular fa-bookmark mr-3 text-right" style="font-size: 35px;"></i>
           <% end %>
         <% end %>
+        <%= @post.bookmarks.count %>
         <div class = "posts-link mt-4 ml-auto">
           <%= link_to "投稿一覧に戻る", posts_path %>
         </div>
