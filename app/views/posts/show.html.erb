@@ -56,7 +56,6 @@
         });
       </script>
     <% @post.comments.each do |comment| %>
-    <% @post.comments.replies.order(:created_at).each do |reply| %>
     <div class = "comment-show mb-4" style = "display: none;">
       <div class = "comment-user">
         <%= image_tag comment.user.icon_image, class: "rounded-circle" %>
@@ -84,22 +83,23 @@
                 <% end %>
             <% end %>
           <% end %>
-          <%= @comment_reply.content %>
-          <%= form_with(model:[@post,@post.comments.replies]) do |f| %>
+          <% comment.replies.order(:created_at).each do |reply| %>
+          <p> <%= comment.user.name %> : <%=reply.content%></p>
+          <% end %>
+          <%= form_with(model:[@post,@comment_reply]) do |f| %>
             <div class="row">
               <div class="form-group col-md-6">
                 <p><label>Reply</label></p>
                 <textarea class="form-control input-form" name="comment[content]" rows="2"><%=@comment_reply.content%></textarea>
               </div>
             </div>
-            <%= form.hidden_field :post_id, value: @post.id %>
-            <%= form.hidden_field :parent_id, value: comment.id%>
+            <%= f.hidden_field :post_id, value: @post.id %>
+            <%= f.hidden_field :parent_id, value: comment.id%>
             <div class="actions">
-              <%= form.submit %>
+              <%= f.submit %>
             </div>
           <% end %>
       </div>
-      <% end %>
       <% end %>
     <div class = "comment-form-area mt-3">
       <%= form_with model: [@post, @comment] do |f| %>
