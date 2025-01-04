@@ -31,11 +31,11 @@
       <div class = "show-menu ml-auto">
         <% if @bookmark.present? %>
           <%= link_to post_bookmark_path(@post.id, @bookmark.id), method: :delete do %>
-            <i class="fa-solid fa-bookmark mr-3 text-right" style="font-size: 35px;"></i>
+            <i class="fa-solid fa-bookmark mr-2 text-right" style="font-size: 30px;"></i>
           <% end %>
         <% else %>
           <%= link_to post_bookmarks_path(@post.id), method: :post do %>
-            <i class="fa-regular fa-bookmark mr-3 text-right" style="font-size: 35px;"></i>
+            <i class="fa-regular fa-bookmark mr-2 text-right" style="font-size: 30px;"></i>
           <% end %>
         <% end %>
         <%= @post.bookmarks.count %>
@@ -56,6 +56,7 @@
         });
       </script>
     <% @post.comments.each do |comment| %>
+    <% @post.comments.replies.order(:created_at).each do |reply| %>
     <div class = "comment-show mb-4" style = "display: none;">
       <div class = "comment-user">
         <%= image_tag comment.user.icon_image, class: "rounded-circle" %>
@@ -83,7 +84,22 @@
                 <% end %>
             <% end %>
           <% end %>
+          <%= @comment_reply.content %>
+          <%= form_with(model:[@post,@post.comments.replies]) do |f| %>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <p><label>Reply</label></p>
+                <textarea class="form-control input-form" name="comment[content]" rows="2"><%=@comment_reply.content%></textarea>
+              </div>
+            </div>
+            <%= form.hidden_field :post_id, value: @post.id %>
+            <%= form.hidden_field :parent_id, value: comment.id%>
+            <div class="actions">
+              <%= form.submit %>
+            </div>
+          <% end %>
       </div>
+      <% end %>
       <% end %>
     <div class = "comment-form-area mt-3">
       <%= form_with model: [@post, @comment] do |f| %>
