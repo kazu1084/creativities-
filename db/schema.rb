@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(version: 2025_01_03_064046) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "posts"
+  add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "follows", "clients"
   add_foreign_key "follows", "contractors"

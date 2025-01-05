@@ -47,7 +47,7 @@
   </div>
 
   <div class = "comment-sidebar col-lg-3">
-      <p class = "comment-button mt-5">コメント件数（ <%= @post.comments.count %> ）</p>
+      <p class = "comment-button mt-5">コメント件数（ <%= @comments.count %> ）</p>
       <script>
         jQuery(function($) {
         $('.comment-button').on('click', function() {
@@ -55,7 +55,10 @@
         });
         });
       </script>
-    <% @post.comments.each do |comment| %>
+    <% @comments.each do |comment| %>
+      <% if comment.parent_id.present? || comment.id.blank? %>
+        <% next %>
+      <% end %>
     <div class = "comment-show mb-4" style = "display: none;">
       <div class = "comment-user">
         <%= image_tag comment.user.icon_image, class: "rounded-circle" %>
@@ -83,22 +86,46 @@
                 <% end %>
             <% end %>
           <% end %>
-          <% comment.replies.order(:created_at).each do |reply| %>
-          <p> <%= comment.user.name %> : <%=reply.content%></p>
-          <% end %>
-          <%= form_with(model:[@post,@comment_reply]) do |f| %>
-            <div class="row">
-              <div class="form-group col-md-6">
-                <p><label>Reply</label></p>
-                <textarea class="form-control input-form" name="comment[content]" rows="2"><%=@comment_reply.content%></textarea>
+          <div class="hiddenrep">
+            <% comment.replies.order(:created_at).each do |reply| %>
+              <div class ="reparea mt-2 p-1 bg-white">
+                <i class="fa-solid fa-reply"> コメントに対しての返信です</i>
+                <div class ="repuser p-1">
+                  <%= image_tag reply.user.icon_image, class: "rounded-circle" %>
+                  <% if reply.user_type == "Client" %>
+                    <div class = "comment-user-name"><%= link_to reply.user.name, client_path(reply.user) %></div>
+                  <% else %>
+                    <div class = "comment-user-name"><%= link_to reply.user.name, contractor_path(reply.user) %></div>
+                  <% end %>
+                  <div class = "comment-time"><%= reply.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
+                  <%=reply.content%>
+                  <% if current_client %>
+                    <% if reply.user_type == "Client" && current_client.id == reply.user_id %>
+                      <%= link_to post_comment_path(reply.post.id, reply.id), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                        <i class="fa-regular fa-trash-can"></i>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <% if current_contractor %>
+                    <% if reply.user_type == "Contractor" && current_contractor.id == reply.user_id %>
+                        <%= link_to post_comment_path(reply.post.id, reply.id), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                          <i class="fa-regular fa-trash-can"></i>
+                        <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
               </div>
-            </div>
-            <%= f.hidden_field :post_id, value: @post.id %>
-            <%= f.hidden_field :parent_id, value: comment.id%>
-            <div class="actions">
-              <%= f.submit %>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
+          <div class = "rep-form mt-3">
+            <%= form_with(model:[@post,@comment_reply]) do |f| %>
+                  <%= f.text_area :content, rows: '2',placeholder: "コメントに返信する", class: "form-control rounded" %>
+              <%= f.hidden_field :parent_id, value: comment.id %>
+              <div class="actions mt-3">
+                <%= f.submit "送信", class: "btn btn-primary"%>
+              </div>
+            <% end %>
+          </div>
       </div>
       <% end %>
     <div class = "comment-form-area mt-3">

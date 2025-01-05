@@ -29,7 +29,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comment_reply = @post.comments.build
+    @comments = @post.comments
+    @comment_reply = @comments.build
     if current_client
       @bookmark = @post.bookmarks.find_by(user: current_client)
     else

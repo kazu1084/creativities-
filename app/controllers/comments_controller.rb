@@ -9,9 +9,9 @@ class CommentsController < ApplicationController
      end
      @comment.post_id = @post.id
      if @comment.save
-       redirect_to post_path(@post.id) ,notice: "Comment created!!"
+       redirect_to post_path(@post.id) ,notice: "コメントを投稿しました"
      else
-       redirect_to post_path(@post.id) ,alert: "Comment failed…"
+       redirect_to post_path(@post.id) ,alert: "コメントの投稿に失敗しました"
      end
     end
 
@@ -37,6 +37,6 @@ class CommentsController < ApplicationController
 
     private
       def comment_params
-      params.require(:comment).permit(:content, :parent_id)
+      params.require(:comment).permit(:content, :parent_id,:post_id, :user_id, :user_type)
       end
 end
