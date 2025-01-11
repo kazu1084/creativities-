@@ -117,7 +117,8 @@
               </div>
             <% end %>
           </div>
-          <div class = "rep-form mt-3">
+          <p class = "reply-text mt-3" data-comment-id = '<%= comment.id %>'>コメントに対して返信する</p>
+          <div class = "rep-form mt-3" id = "reply-form-<%= comment.id %>">
             <%= form_with(model:[@post,@comment_reply]) do |f| %>
                   <%= f.text_area :content, rows: '2',placeholder: "コメントに返信する", class: "form-control rounded" %>
               <%= f.hidden_field :parent_id, value: comment.id %>
@@ -138,5 +139,13 @@
         </div>
       <% end %>
     </div>
+     <script>
+      jQuery(function($) {
+      $('.reply-text').on('click', function() {
+      const commentId = $(this).data('comment-id');
+      $(`#reply-form-${commentId}`).slideToggle();
+      });
+      });
+    </script>
   </div>
 </div>

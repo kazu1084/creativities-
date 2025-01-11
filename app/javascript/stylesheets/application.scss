@@ -177,6 +177,10 @@ height: 550px;
   display: none;
 }
 
+.rep-form {
+  display: none;
+}
+
 .comment-button {
   cursor: pointer;
 }
@@ -185,7 +189,15 @@ height: 550px;
   width: 70%;
   color: white;
     background-color: #333399;
-    }
+}
+
+.reply-text {
+  cursor: pointer;
+}
+.reply-text:hover {
+  color: white;
+  background-color: #333399;
+}
 
 .app-logo2 {
   width:80px;
