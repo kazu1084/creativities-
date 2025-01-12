@@ -14,7 +14,7 @@
                 <%= message.body.truncate(20) %>
             <% end %>
           </div>
-        <% else %>
+        <% elsif message.receiver == current_contractor %>
           <div class = "profile">
             <%= image_tag message.sender.icon_image, class: "mr-3" %>
             <%= message.sender.name %>

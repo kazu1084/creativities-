@@ -9,7 +9,7 @@ class Client::MessagesController < ApplicationController
   def index
     @contractors = Contractor.joins(:messages).where(messages:{sender: current_client}).or(Contractor.joins(:messages).where(messages:{receiver: current_client})).distinct
     @latest_messages = @contractors.map do |contractor|
-      current_client.latest_message(contractor)
+      current_client.message_logs(contractor).order(created_at: :desc).limit(1).first
     end.compact
   end
 
