@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_03_063231) do
+ActiveRecord::Schema.define(version: 2025_01_13_044443) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -141,6 +141,22 @@ ActiveRecord::Schema.define(version: 2025_01_03_063231) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["receiver_type", "receiver_id"], name: "index_messages_on_receiver"
     t.index ["sender_type", "sender_id"], name: "index_messages_on_sender"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "visitor_type", null: false
+    t.integer "visitor_id", null: false
+    t.string "visited_type", null: false
+    t.integer "visited_id", null: false
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
+    t.string "action", default: "", null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
+    t.index ["visited_type", "visited_id"], name: "index_notifications_on_visited"
+    t.index ["visitor_type", "visitor_id"], name: "index_notifications_on_visitor"
   end
 
   create_table "posts", force: :cascade do |t|
