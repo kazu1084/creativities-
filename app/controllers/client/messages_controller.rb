@@ -7,9 +7,11 @@ class Client::MessagesController < ApplicationController
   end
 
   def index
-    @contractors = Contractor.joins(:messages).where(messages:{sender: current_client}).or(Contractor.joins(:messages).where(messages:{receiver: current_client})).distinct
+    contractors = Contractor.joins(:messages).where(messages:{sender: current_client}).or(Contractor.joins(:messages).where(messages:{receiver: current_client}))
+    first_message = Contractor.where(id: current_client.messages.select(:receiver_id))  #selecメソッドで送信相手のidを検索して取得
+    @contractors = (contractors + first_message).uniq
     @latest_messages = @contractors.map do |contractor|
-      current_client.message_logs(contractor).order(created_at: :desc).limit(1).first
+      current_client.latest_message(contractor)
     end.compact
   end
 
