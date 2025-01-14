@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
   has_one_attached :image
 
+  has_many :notifications, as: :notifiable, dependent: :destroy
   belongs_to :contractor
   belongs_to :client
   validates :score, numericality: {

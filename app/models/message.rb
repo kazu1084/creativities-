@@ -4,6 +4,7 @@ class Message < ApplicationRecord
 
   belongs_to :sender, polymorphic: true
   belongs_to :receiver, polymorphic: true
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   validates :body, presence: true
 end

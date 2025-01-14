@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications, only: :index
+
   namespace :client do
       resources :messages,  only: [:create, :index, :show]
     resources :contractors, only: [] do

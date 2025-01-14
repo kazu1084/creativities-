@@ -10,13 +10,17 @@ class BookmarksController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    if current_client
-      current_user = current_client
-    else
-      current_user = current_contractor
+    current_user = current_client || current_contractor
+    unless current_user
+      redirect_to root_path, alert: 'ログインが必要です。'
+      return
     end
     bookmark = post.bookmarks.new(user: current_user)
     bookmark.save
+    bookmark.create_notification_bookmark!(
+      visitor: current_user,
+      visited: bookmark.post.client
+    )
     redirect_to post_path(post.id)
   end
 
