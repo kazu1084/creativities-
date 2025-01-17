@@ -11,8 +11,8 @@ class Client < ApplicationRecord
   has_many :contractors, through: :client_follows
   has_many :messages, as: :sender
   has_many :reviews, dependent: :destroy
-  has_many :visitor, dependent: :destroy
-  has_many :visited, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', as: :visitor, dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', as: :visited, dependent: :destroy
 
   def message_logs(contractor)
     Message.where(sender: self,receiver: contractor).or(Message.where(sender: contractor,receiver: self))
