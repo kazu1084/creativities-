@@ -10,7 +10,7 @@ class Bookmark < ApplicationRecord
       visitor_type: visitor.class.name,
       visited_id: visited.id,
       visited_type: visited.class.name,
-      notifiable_id: bookmark.post_id,
+      notifiable_id: self.post.id,
       notifiable_type: 'Post',
       action: 'bookmark'
       )
