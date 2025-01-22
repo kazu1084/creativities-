@@ -26,5 +26,8 @@ class Bookmark < ApplicationRecord
       )
     notification.read = true if visitor.id == visited.id && visitor_type == visited_type   # 自分の投稿に対する「ブックマーク」の場合は既読状態にする
     notification.save if notification.valid?
+    unless notification.save
+      Rails.logger.error "Notification save failed: #{notification.errors.full_messages}"
+    end
   end
 end

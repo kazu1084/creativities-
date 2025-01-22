@@ -1,11 +1,12 @@
 <div class="col-md-6 mx-auto">
-  <form class="form-inline">
-    <span>
-      <%= avatar_for(notification.visitor) %>
-      <strong><%= notification.visitor.name %></strong>
-      <span><%= notification.notification_message %></span>
-    </span>
-  </form>
-  <small class="text-muted text-right"><%= notification.created_at %></small>
-  <hr>
+  <% @notifications.each do |notification| %>
+    <form class="form-inline">
+      <span>
+        <%= avator_for(notification.visitor) %>
+        <span><%= notification.notification_message %></span>
+      </span>
+    </form>
+    <small class="text-muted text-right"><%= time_ago_in_words(notification.created_at) %></small>
+    <hr>
+  <% end %>
 </div>

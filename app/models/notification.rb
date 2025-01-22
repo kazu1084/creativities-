@@ -1,20 +1,20 @@
 class Notification < ApplicationRecord
-  belongs_to :vistor, polymorphic: true
-  belongs_to :visted, polymorphic: true
-  belongs_to :notifiable, polymorphic: true
+  belongs_to :visitor, polymorphic: true, optional: true
+  belongs_to :visited, polymorphic: true, optional: true
+  belongs_to :notifiable, polymorphic: true, optional: true
 
   def notification_message
     case action
     when 'comment'
       if notifiable.user_id == visited.id
-        "#{vistor.name}さんがあなたの投稿にコメントしました"
+        "#{visitor.name}さんがあなたの投稿にコメントしました"
       else
         "#{visitor.name}さんが#{notifiable.name}さんの投稿にコメントしました"
       end
     when 'bookmark'
       "#{visitor.name}さんがあなたの投稿を保存しました"
     when 'message'
-      "#{visitro.name}さんからメッセージが届きました"
+      "#{visitor.name}さんからメッセージが届きました"
     else
       "ー通知がありません"
     end

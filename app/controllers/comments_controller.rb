@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
      end
      @comment.post_id = @post.id
      if @comment.save
+       @post.create_notification_comment!(@comment.user, @comment.id)
        redirect_to post_path(@post.id) ,notice: "コメントを投稿しました"
      else
        redirect_to post_path(@post.id) ,alert: "コメントの投稿に失敗しました"

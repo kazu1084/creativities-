@@ -1,5 +1,4 @@
 class BookmarksController < ApplicationController
-
   def index
     if current_client
       @user_bookmarks = Bookmark.where(user: current_client)
