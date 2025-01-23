@@ -26,6 +26,10 @@ class Client::MessagesController < ApplicationController
     @message = current_client.messages.build(receiver: @contractor)
     @message.assign_attributes(message_params)
     if @message.save
+      @message.create_notification_message!(
+        visitor: @message.sender,
+        visited: @contractor
+        )
       redirect_to client_message_path(@contractor)
     else
       @messages = current_client.message_logs(@contractor).order(:created_at)

@@ -1,5 +1,5 @@
 <div class="col-md-6 mx-auto">
-  <% @notifications.each do |notification| %>
+  <% @notifications.order(created_at: :desc).each do |notification| %>
     <form class="form-inline">
       <span>
         <%= avator_for(notification.visitor) %>

@@ -15,7 +15,11 @@ class Notification < ApplicationRecord
     when 'bookmark'
       ActionController::Base.helpers.link_to "#{visitor.name}さんがあなたの投稿を保存しました", post_path(notifiable)
     when 'message'
-      "#{visitor.name}さんからメッセージが届きました"
+      if visited_type == "Client"
+        ActionController::Base.helpers.link_to "#{visitor.name}さんからメッセージが届きました", client_message_path(notifiable.sender_id)
+      else
+        ActionController::Base.helpers.link_to "#{visitor.name}さんからメッセージが届きました", contractor_message_path(notifiable.sender_id)
+      end
     else
       "ー通知がありません"
     end
