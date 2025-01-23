@@ -18,17 +18,19 @@ class Post < ApplicationRecord
   def create_notification_comment!(current_user, comment_id)
     temp_ids = Comment.select(:user_id).where(post_id: id).where.not(user_id:current_user.id).distinct
     temp_ids.each do |temp_id|
-      save_notification_comment!(current_user, comment_id, temp_id['user_id'])
+      save_notification_comment!(current_user, comment_id, temp_id['user_id'], self.client_id)
     end
-    Rails.logger.debug "Client ID: #{self.client_id}"
     save_notification_comment!(current_user, comment_id, self.client_id) if temp_ids.blank?
   end
 
   def save_notification_comment!(current_user, comment_id, visited_id)
+      visited_user = Client.find_by(id: visited_id) || Contractor.find_by(id: visited_id)
+      visited_type = visited_user.class.name if visited_user
       notification = current_user.active_notifications.new(
       notifiable_id: self.id,
       notifiable_type: 'Post',
       visited_id: visited_id,
+      visited_type: visited_type,
       action: 'comment'
       )
     if notification.visitor_id == notification.visited_id
