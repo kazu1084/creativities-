@@ -8,7 +8,7 @@ class Client::MessagesController < ApplicationController
 
   def index
     contractors = Contractor.joins(:messages).where(messages:{sender: current_client}).or(Contractor.joins(:messages).where(messages:{receiver: current_client}))
-    first_message = Contractor.where(id: current_client.messages.select(:receiver_id))  #selecメソッドで送信相手のidを検索して取得
+    first_message = Contractor.where(id: current_client.messages.select(:receiver_id))  #selectメソッドで送信相手のidを検索して取得
     @contractors = (contractors + first_message).uniq
     @latest_messages = @contractors.map do |contractor|
       current_client.latest_message(contractor)
@@ -40,6 +40,6 @@ class Client::MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :image, :video)
+    params.require(:message).permit(:body, :image, :video, :receiver_id, :receiver_type)
   end
 end

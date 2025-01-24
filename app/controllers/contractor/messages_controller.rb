@@ -39,8 +39,7 @@ class Contractor::MessagesController < ApplicationController
   end
 
   private
-
   def message_params
-    params.require(:message).permit(:body, :image, :video)
+    params.require(:message).permit(:body, :image, :video, :receiver_id, :receiver_type)
   end
 end

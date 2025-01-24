@@ -7,7 +7,7 @@ class Notification < ApplicationRecord
   def notification_message
     case action
     when 'comment'
-      if notifiable.client_id == visited.id
+      if notifiable.client_id == visited_id || visited_type == "Client"
         ActionController::Base.helpers.link_to "#{visitor.name}さんがあなたの投稿にコメントしました", post_path(notifiable)
       else
         ActionController::Base.helpers.link_to "#{visitor.name}さんが#{notifiable.name}さんの投稿にコメントしました", post_path(notifiable)
@@ -15,13 +15,11 @@ class Notification < ApplicationRecord
     when 'bookmark'
       ActionController::Base.helpers.link_to "#{visitor.name}さんがあなたの投稿を保存しました", post_path(notifiable)
     when 'message'
-      if visited_type == "Client"
-        ActionController::Base.helpers.link_to "#{visitor.name}さんからメッセージが届きました", client_message_path(notifiable.sender_id)
+      if notifiable.receiver_type == "Client"
+        ActionController::Base.helpers.link_to "#{visitor.name}さんからメッセージが届きました", client_message_path(self.visitor_id)
       else
-        ActionController::Base.helpers.link_to "#{visitor.name}さんからメッセージが届きました", contractor_message_path(notifiable.sender_id)
+        ActionController::Base.helpers.link_to "#{visitor.name}さんからメッセージが届きました", contractor_message_path(self.visitor_id)
       end
-    else
-      "ー通知がありません"
     end
   end
 end

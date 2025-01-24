@@ -1,8 +1,7 @@
 <div class = "notifications mt-3">
-  <% notifications = @notifications.where.not(visitor_id: @current_user.id) %>
-  <% if notifications.exists? %>
+  <% if @notifications.exists? %>
     <%= render "layouts/notifications" %>
-    <%= paginate notifications %>
+    <%= paginate @notifications %>
   <% else %>
     <p>ー通知はありません</p>
   <% end %>
