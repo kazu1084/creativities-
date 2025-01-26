@@ -13,3 +13,9 @@
     <div class ="about-image" style = 'background-image: url("<%= asset_path('business.jpg') %>")' >
   </div>
 </div>
+
+<script>
+    $(document).on('turbolinks:load',function(){
+      $('.about-image').hide().fadeIn(2000);
+    });
+  </script>
