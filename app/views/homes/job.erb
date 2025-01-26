@@ -36,3 +36,9 @@
       <p>仕事を依頼したい法人様は<%= link_to "こちらへ" ,root_path %></p>
     </div>
   </div>
+
+  <script>
+    $(document).on('turbolinks:load',function(){
+      $('.background-content').hide().fadeIn(2000);
+    });
+  </script>

@@ -36,6 +36,7 @@ main {
 background-size: cover;
 background-position: center;
 height: 550px;
+display: none;
 }
 
 .background-left {
@@ -430,6 +431,7 @@ footer {
   .background-left {  //topページのレイアウト
     width: 100%;
   }
+
   .background-left-texts h3 {
     font-size: 20px;
   }

@@ -36,3 +36,9 @@
       <P>仕事を探している個人の方は<%= link_to "こちらへ" ,job_path %></P>
     </div>
   </div>
+
+  <script>
+    $(document).on('turbolinks:load',function(){
+      $('.background-content').hide().fadeIn(2000);
+    });
+  </script>
